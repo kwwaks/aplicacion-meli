@@ -3327,6 +3327,7 @@ fieldset[disabled] .btn-link:focus {
   font-size: 18px;
   line-height: 1.3333333;
   border-radius: 6px;
+  background-color: #2f33ae;
 }
 .btn-sm,
 .btn-group-sm > .btn {
@@ -4841,7 +4842,7 @@ a.badge:focus {
   padding: 30px 15px;
   margin-bottom: 30px;
   color: inherit;
-  background-color: #eee;
+  background-color: #FFF059;
 }
 .jumbotron h1,
 .jumbotron .h1 {
