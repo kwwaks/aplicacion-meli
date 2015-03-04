@@ -37,6 +37,7 @@
 
   		<script type="text/javascript">
   			$("#botonBuscar").click(funcionBuscar);
+  			$("#inputBuscar").keypress(funcionBuscar);
   			function funcionBuscar() {
 				var search = $.get("https://api.mercadolibre.com/sites/MLA/search", {q: $("#inputBuscar").val(), offset: 0, limit: 5});
 				search.done(mostrarResultado);
