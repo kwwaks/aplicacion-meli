@@ -29,11 +29,12 @@
 					<hr class="featurette-divider">
 			      	<div class="row featurette">
 			        	<div class="col-md-7">
-			          		<h2 class="featurette-heading">${empleado.nombre} ${empleado.apellido} ${empleado.fechaNacimiento} <span class="text-muted">Regalo</span></h2>
+			          		<h2 class="featurette-heading">${empleado.nombre} ${empleado.apellido} ${empleado.obtenerFecha()} <span class="text-muted">Regalo</span></h2>
 			          		<p class="lead">Ver de poner descripcion.</p>
+			          		<button class="btn btn-primary btn-lg"><a style="color: white"href="./regalo">Agregar Regalo</a></button>
 			        	</div>
 			       		<div class="col-md-5">	
-			          		<img class="featurette-image img-responsive" data-src="holder.js/500x500/auto" 	alt="Generic placeholder image">
+			          		<img class="featurette-image img-responsive" src="holder.js/500x500/auto" 	alt="Generic placeholder image">
 			        	</div>
 			        </div>
 			    </g:each>

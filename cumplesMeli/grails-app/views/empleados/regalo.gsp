@@ -30,8 +30,9 @@
 	  		</div>
   		</div>
   		
-  		<div id="respuesta_busqueda">
-
+  		<div class="container marketing">
+  			<div id="respuesta_busqueda">
+  			</div>
   		</div>
 
   		<script type="text/javascript">
@@ -43,12 +44,26 @@
 			}
 
 			function mostrarResultado(data) {
-				$.each(data.results, agregarResultado )
+				$.each(data.results, agregarResultado);
 			}
 			
-			function agregarResultado(index, item) {
-				console.log(item.title);
-				$("#respuesta_busqueda").append( "<li>" + item.title + "</li>" );
+			function agregarResultado (index, item) {
+				var search_item = $.get("https://api.mercadolibre.com/items/"+item.id);
+				search_item.done(mostrarItem);
+			}
+			
+			function mostrarItem (item) {
+				$("#respuesta_busqueda").append('<div class="container marketing">');	
+				$("#respuesta_busqueda").append('<hr class="featurette-divider">');
+			    $("#respuesta_busqueda").append('<div class="row featurette">');
+			    $("#respuesta_busqueda").append('<div class="col-md-7">');
+				$("#respuesta_busqueda").append('<h2 class="featurette-heading">' + item.title + '<span class="text-muted">' + ' $' + item.price  + '</span></h2>');
+				$("#respuesta_busqueda").append('</div>');
+				$("#respuesta_busqueda").append('<div class="col-md-5">	');
+				$("#respuesta_busqueda").append('<img class="featurette-image img-responsive" src=' + item.pictures[0].url  + 'alt="Generic placeholder image"/>');
+				$("#respuesta_busqueda").append('</div>');
+				$("#respuesta_busqueda").append('</div>');
+				$("#respuesta_busqueda").append('</div>');
 			}
 			
 			function mostrarError() {
