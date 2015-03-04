@@ -31,6 +31,22 @@
 		          		<img class="featurette-image img-responsive" data-src="holder.js/500x500/auto" 	alt="Generic placeholder image">
 		        	</div>
 		      </div>
+
+
+<g:form method="post" controller="tweets">
+<h2 class="featurette-heading">Nombre</h2>
+<g:textField name="Input1" value="${myValue}" />
+<h2 class="featurette-heading">Apellido</h2>
+<g:textField name="Input1" value="${myValue}" />
+<h2 class="featurette-heading">Fecha </h2>
+<g:textField name="Input1" value="${myValue}" />
+<g:actionSubmit value="${message(code:'Enviar')}" action="crearTweet" />
+
+</g:form>
+		      
+		      
+		      
+		 
 		    </div>
 	      <hr class="featurette-divider">
 	    </div>
