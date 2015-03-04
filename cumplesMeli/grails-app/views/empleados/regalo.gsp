@@ -13,23 +13,49 @@
 	      <div class="container">
 	        <div id="navbar" class="navbar-collapse collapse">
 	          <ul class="nav navbar-nav navbar-right">
-	            <li class="active"><a href="../">Home<span class="sr-only">(current)</span></a></li>
+	            <li class="active"><a href="./">Home<span class="sr-only">(current)</span></a></li>
 	          </ul>
 	        </div><!--/.nav-collapse -->
 	      </div>
 	    </nav>
+	    
 	    <div class="container">
 		    <div class="row">
 			    <div class="input-group">
-			      <input type="text" class="form-control" placeholder="Buscar regalo...">
+			      <input type="text" class="form-control" placeholder="Buscar regalo..." id="inputBuscar">
 			      <span class="input-group-btn">
-			        <g:actionSubmit class="btn btn-default" value="Buscar"action="buscarML"></g:actionSubmit>
+			        <button class="btn btn-default" id="botonBuscar">Buscar</button>
 			      </span>
 	  		  	</div><!-- /input-group -->
 	  		</div>
   		</div>
+  		
+  		<div id="respuesta_busqueda">
 
+  		</div>
 
+  		<script type="text/javascript">
+  			$("#botonBuscar").click(funcionBuscar);
+  			function funcionBuscar() {
+				var search = $.get("https://api.mercadolibre.com/sites/MLA/search", {q: $("#inputBuscar").val(), offset: 0, limit: 5});
+				search.done(mostrarResultado);
+				search.fail(mostrarError);
+			}
+
+			function mostrarResultado(data) {
+				$.each(data.results, agregarResultado )
+			}
+			
+			function agregarResultado(index, item) {
+				console.log(item.title);
+				$("#respuesta_busqueda").append( "<li>" + item.title + "</li>" );
+			}
+			
+			function mostrarError() {
+				$("#respuesta_busqueda").html( "<li>Se produjo un errors</li>" );
+			}
+
+		</script>
 
 	</body>
 </html>
