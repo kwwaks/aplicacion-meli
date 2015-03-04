@@ -1,8 +1,12 @@
-package cumples
+package cumples  	
+import cumples.Empleado
 
 class EmpleadosController {
 
-    def index() { }
+    def index() {
+    	[listaEmpleados: Empleado.list()];
+
+     }
     
     def regalo() { }
 	
