@@ -38,10 +38,12 @@
   		<script type="text/javascript">
   			$("#botonBuscar").click(funcionBuscar);
   			$("#inputBuscar").keypress(funcionBuscar);
-  			function funcionBuscar() {
-				var search = $.get("https://api.mercadolibre.com/sites/MLA/search", {q: $("#inputBuscar").val(), offset: 0, limit: 5});
-				search.done(mostrarResultado);
-				search.fail(mostrarError);
+  			function funcionBuscar(param) {
+  				if (param.keyCode == 13) {
+					var search = $.get("https://api.mercadolibre.com/sites/MLA/search", {q: $("#inputBuscar").val(), offset: 0, limit: 5});
+					search.done(mostrarResultado);
+					search.fail(mostrarError);
+				};
 			}
 
 			function mostrarResultado(data) {
@@ -49,11 +51,13 @@
 			}
 			
 			function agregarResultado (index, item) {
+				$("#respuesta_busqueda").empty();
 				var search_item = $.get("https://api.mercadolibre.com/items/"+item.id);
 				search_item.done(mostrarItem);
 			}
 			
 			function mostrarItem (item) {
+				
 				$("#respuesta_busqueda").append('<div class="container marketing">');	
 				$("#respuesta_busqueda").append('<hr class="featurette-divider">');
 			    $("#respuesta_busqueda").append('<div class="row featurette">');
