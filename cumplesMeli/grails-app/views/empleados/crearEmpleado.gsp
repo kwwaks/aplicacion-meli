@@ -18,10 +18,7 @@
 		        </div><!--/.nav-collapse -->
 		      </div>
 		    </nav>
-			<div style = "text-align: center" class="jumbotron">
-				<p style = "font-size: 30px">Cumpleaños de los Empleados</p>
-				<!-- <g:actionSubmit class="btn btn-primary btn-lg" value="${message(code:'Crear Empleado')}" action="crearEmpleado"/> -->
-			</div>
+			
 			<div class="container marketing">	
 				<hr class="featurette-divider">
 
