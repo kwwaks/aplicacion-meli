@@ -5,10 +5,11 @@ class EmpleadosController {
 
     def index() {
     	[listaEmpleados: Empleado.list()];
-
      }
     
-    def regalo() { }
+    def regalo(long id) {
+    	[idEmpleado: id];
+    }
 	
 	def crearEmpleado() {}
 }

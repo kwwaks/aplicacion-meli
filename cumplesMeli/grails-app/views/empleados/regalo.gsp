@@ -62,18 +62,7 @@
 			}
 			
 			function mostrarItem (item) {
-				
-				$("#respuesta_busqueda").append('<div class="container marketing">');	
-				$("#respuesta_busqueda").append('<hr class="featurette-divider">');
-			    $("#respuesta_busqueda").append('<div class="row featurette">');
-			    $("#respuesta_busqueda").append('<div class="col-md-7">');
-				$("#respuesta_busqueda").append('<h2 class="featurette-heading">' + item.title + '<span class="text-muted">' + ' $' + item.price  + '</span></h2>');
-				$("#respuesta_busqueda").append('</div>');
-				$("#respuesta_busqueda").append('<div class="col-md-5">	');
-				$("#respuesta_busqueda").append('<img class="featurette-image img-responsive" src=' + item.pictures[0].url  + 'alt="Generic placeholder image"/>');
-				$("#respuesta_busqueda").append('</div>');
-				$("#respuesta_busqueda").append('</div>');
-				$("#respuesta_busqueda").append('</div>');
+				$("#respuesta_busqueda").append('<div class="container marketing"> <hr class="featurette-divider"> <div class="row featurette">	<div class="col-md-7"><h2 class="featurette-heading">' + item.title + '<span class="text-muted">' + ' $' + item.price  + '</span></h2><a class="btn btn-primary btn-lg" style="color: white" href="/cumplesMeli/empleados/index/${idRegalo}/${item.id}">Regalar</a></div><div class="col-md-5"> <img class="featurette-image img-responsive" src=' + item.pictures[0].url  + 'alt="Generic placeholder image"/></div></div></div>');
 			}
 			
 			function mostrarError() {
