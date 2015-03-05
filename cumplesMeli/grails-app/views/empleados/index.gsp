@@ -13,7 +13,7 @@
 	      <div class="container">
 	        <div id="navbar" class="navbar-collapse collapse">
 	          <ul class="nav navbar-nav navbar-right">
-	            <li class="active"><a href="./crearEmpleado">Crear Empleado <span class="sr-only">(current)</span></a></li>
+	            <li class="active"><a href="/cumplesMeli/empleados/crearEmpleado">Crear Empleado <span class="sr-only">(current)</span></a></li>
 	          </ul>
 	        </div><!--/.nav-collapse -->
 	      </div>
@@ -31,10 +31,10 @@
 			        	<div class="col-md-7">
 			          		<h2 class="featurette-heading">${empleado.nombre} ${empleado.apellido} ${empleado.obtenerFecha()} <span class="text-muted">Regalo</span></h2>
 			          		<p class="lead">Ver de poner descripcion.</p>
-			          		<button class="btn btn-primary btn-lg"><a style="color: white"href="./regalo">Agregar Regalo</a></button>
+			          		<button class="btn btn-primary btn-lg"><a style="color: white"href="/cumplesMeli/empleados/regalo">Agregar Regalo</a></button>
 			        	</div>
 			       		<div class="col-md-5">	
-			          		<img class="featurette-image img-responsive" src="holder.js/500x500/auto" 	alt="Generic placeholder image">
+			          		<img class="featurette-image img-responsive" src="holder.js/500x500/auto" style="display: none;" alt="Generic placeholder image">
 			        	</div>
 			        </div>
 			    </g:each>

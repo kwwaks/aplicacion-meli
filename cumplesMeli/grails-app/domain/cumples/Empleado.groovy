@@ -5,12 +5,12 @@ class Empleado {
 	String nombre;
 	String apellido;
 	Date fechaNacimiento;
-	String link;
+	String idProducto;
     
     static constraints = {
     	nombre nullable: false;
     	apellido nullable: false;
-    	link nullable: true;
+    	idProducto nullable: true;
     }
 
     String obtenerFecha(){
