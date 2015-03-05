@@ -19,8 +19,7 @@ class EmpleadosController {
 		miEmpleado.urlFotoProducto = params.urlFotoProducto;
 		miEmpleado.save(flush:true);
 		redirect(controller: "Empleados", action:"index");
-	}
-	
+	}	
 	def agregarEmpleado() {
 		
 			 def contenidoNombre = params.nombre
