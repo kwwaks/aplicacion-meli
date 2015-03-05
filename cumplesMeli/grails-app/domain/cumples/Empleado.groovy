@@ -5,7 +5,7 @@ class Empleado {
 	String nombre;
 	String apellido;
 	Date fechaNacimiento;
-	String link;
+	String idProducto;
     
     static constraints = {
     	nombre nullable: false;

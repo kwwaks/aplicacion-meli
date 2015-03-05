@@ -37,13 +37,18 @@
 
   		<script type="text/javascript">
   			$("#botonBuscar").click(funcionBuscar);
-  			$("#inputBuscar").keypress(funcionBuscar);
-  			function funcionBuscar(param) {
+  			$("#inputBuscar").keypress(funcionBuscarEnter);
+  			
+  			function funcionBuscarEnter(param) {
   				if (param.keyCode == 13) {
-					var search = $.get("https://api.mercadolibre.com/sites/MLA/search", {q: $("#inputBuscar").val(), offset: 0, limit: 5});
-					search.done(mostrarResultado);
-					search.fail(mostrarError);
-				};
+  					funcionBuscar();
+  				}
+  			}
+
+  			function funcionBuscar() {
+				var search = $.get("https://api.mercadolibre.com/sites/MLA/search", {q: $("#inputBuscar").val(), offset: 0, limit: 5});
+				search.done(mostrarResultado);
+				search.fail(mostrarError);
 			}
 
 			function mostrarResultado(data) {
