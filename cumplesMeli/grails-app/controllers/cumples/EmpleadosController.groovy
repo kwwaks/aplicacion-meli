@@ -12,4 +12,12 @@ class EmpleadosController {
     }
 	
 	def crearEmpleado() {}
+
+	def agregarProducto() {
+		Empleado miEmpleado = Empleado.get(params.idEmpleado as long);
+		String miRegalo = params.idRegalo;
+		miEmpleado.idProducto = miRegalo;
+		miEmpleado.save(flush:true);
+		redirect(controller: "Empleados", action:"index");
+	}
 }

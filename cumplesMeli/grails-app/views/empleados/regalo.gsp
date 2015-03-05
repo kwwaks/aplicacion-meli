@@ -81,9 +81,9 @@
 			function mostrarItem (item) {
 				var contenido = $("#template_respuesta_busqueda").html();
 				contenido = contenido.replace("#tituloItem#", item.title);
+				contenido = contenido.replace("#idRegalo#", item.id);
 				contenido = contenido.replace("#precioItem#", item.price);
 				contenido = contenido.replace("#urlImagen#", item.pictures[0].url);
-
 				$("#respuesta_busqueda").append(contenido);
 			}
 			
