@@ -38,8 +38,9 @@
 						<div class="col-md-7">
 							<h2 class="featurette-heading"> #tituloItem# <span class="text-muted"> $ #precioItem#</span></h2>
 							<form action="${createLink(action: 'agregarProducto', controller: 'empleados')}" method="post">
-								<input type="hidden" name="idRegalo" value="#idRegalo#"/>
 								<input type="hidden" name="idEmpleado" value="${idEmpleado}"/>
+								<input type="hidden" name="nombreProducto" value="#tituloItem#"/>
+								<input type="hidden" name="urlFotoProducto" value="#urlImagen#"/>
 								<button class="btn btn-primary btn-lg" style="color: white">Regalar</button>
 							</form>
 						</div>
@@ -81,8 +82,9 @@
 			function mostrarItem (item) {
 				var contenido = $("#template_respuesta_busqueda").html();
 				contenido = contenido.replace("#tituloItem#", item.title);
-				contenido = contenido.replace("#idRegalo#", item.id);
+				contenido = contenido.replace("#tituloItem#", item.title);
 				contenido = contenido.replace("#precioItem#", item.price);
+				contenido = contenido.replace("#urlImagen#", item.pictures[0].url);
 				contenido = contenido.replace("#urlImagen#", item.pictures[0].url);
 				$("#respuesta_busqueda").append(contenido);
 			}
