@@ -34,7 +34,7 @@
 			          		<button class="btn btn-primary btn-lg"><a style="color: white"href="./regalo">Agregar Regalo</a></button>
 			        	</div>
 			       		<div class="col-md-5">	
-			          		<img class="featurette-image img-responsive" src="holder.js/500x500/auto" 	alt="Generic placeholder image">
+			          		<img class="featurette-image img-responsive" src="holder.js/500x500/auto" style="display: none;" alt="Generic placeholder image">
 			        	</div>
 			        </div>
 			    </g:each>
