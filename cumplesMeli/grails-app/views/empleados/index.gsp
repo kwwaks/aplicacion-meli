@@ -24,17 +24,25 @@
 				<!-- <g:actionSubmit class="btn btn-primary btn-lg" value="${message(code:'Crear Empleado')}" action="crearEmpleado"/> -->
 			</div>
 	    </div>
-		<div class="container marketing">	
+		<div class="container marketing" style="width: 60%">	
 				<g:each in="${listaEmpleados}" var="empleado">
 					<hr class="featurette-divider">
 			      	<div class="row featurette">
 			        	<div class="col-md-7">
-			          		<h2 class="featurette-heading">${empleado.nombre} ${empleado.apellido} ${empleado.obtenerFecha()} <span class="text-muted">Regalo</span></h2>
-			          		<p class="lead">Ver de poner descripcion.</p>
-			          		<button class="btn btn-primary btn-lg"><a style="color: white"href="/cumplesMeli/empleados/regalo">Agregar Regalo</a></button>
-			        	</div>
-			       		<div class="col-md-5">	
-			          		<img class="featurette-image img-responsive" src="holder.js/500x500/auto" style="display: none;" alt="Generic placeholder image">
+			          		<h2 class="featurette-heading">${empleado.nombre} ${empleado.apellido} ${empleado.obtenerFecha()}</h2>
+			          		 
+			          		 <g:if test="${empleado.idProducto == null}">
+			          			<a class="btn btn-primary btn-lg" style="color: white"href="/cumplesMeli/empleados/regalo/${empleado.id}">Agregar Regalo</a>
+							</g:if>
+			          		<g:else>
+			          			<div>
+			          				<h2 class="featurette-heading"><span class="text-muted">Regalo</span></h2>
+			          				<a class="btn btn-primary btn-lg" style="color: white"href="/cumplesMeli/empleados/regalo/${empleado.id}">Cambiar Regalo</a>
+			          			</div>
+			          			<div class="col-md-5">	
+			          				<img class="featurette-image img-responsive" src="holder.js/500x500/auto" style="display: none" alt="Generic placeholder image">
+			        			</div>
+							</g:else>
 			        	</div>
 			        </div>
 			    </g:each>

@@ -31,8 +31,25 @@
   		</div>
   		
   		<div class="container marketing">
-  			<div id="respuesta_busqueda">
+  			<div id="template_respuesta_busqueda" style="display: none">
+				<div class="container marketing">
+					<hr class="featurette-divider">
+					<div class="row featurette">
+						<div class="col-md-7">
+							<h2 class="featurette-heading"> #tituloItem# <span class="text-muted"> $ #precioItem#</span></h2>
+							<form action="${createLink(action: 'agregarProducto', controller: 'empleados')}" method="post">
+								<input type="hidden" name="idRegalo" value="#idRegalo#"/>
+								<input type="hidden" name="idEmpleado" value="${idEmpleado}"/>
+								<button class="btn btn-primary btn-lg" style="color: white">Regalar</button>
+							</form>
+						</div>
+						<div class="col-md-5">
+							<img class="featurette-image img-responsive" src="#urlImagen#" alt="Generic placeholder image"/>
+						</div>
+					</div>
+				</div>'
   			</div>
+  			<div id="respuesta_busqueda"></div>
   		</div>
 
   		<script type="text/javascript">
@@ -62,18 +79,12 @@
 			}
 			
 			function mostrarItem (item) {
-				
-				$("#respuesta_busqueda").append('<div class="container marketing">');	
-				$("#respuesta_busqueda").append('<hr class="featurette-divider">');
-			    $("#respuesta_busqueda").append('<div class="row featurette">');
-			    $("#respuesta_busqueda").append('<div class="col-md-7">');
-				$("#respuesta_busqueda").append('<h2 class="featurette-heading">' + item.title + '<span class="text-muted">' + ' $' + item.price  + '</span></h2>');
-				$("#respuesta_busqueda").append('</div>');
-				$("#respuesta_busqueda").append('<div class="col-md-5">	');
-				$("#respuesta_busqueda").append('<img class="featurette-image img-responsive" src=' + item.pictures[0].url  + 'alt="Generic placeholder image"/>');
-				$("#respuesta_busqueda").append('</div>');
-				$("#respuesta_busqueda").append('</div>');
-				$("#respuesta_busqueda").append('</div>');
+				var contenido = $("#template_respuesta_busqueda").html();
+				contenido = contenido.replace("#tituloItem#", item.title);
+				contenido = contenido.replace("#idRegalo#", item.id);
+				contenido = contenido.replace("#precioItem#", item.price);
+				contenido = contenido.replace("#urlImagen#", item.pictures[0].url);
+				$("#respuesta_busqueda").append(contenido);
 			}
 			
 			function mostrarError() {
