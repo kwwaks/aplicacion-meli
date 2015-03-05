@@ -43,7 +43,7 @@
 		     	<div class="row featurette">
 		        	<!--  <div class="col-md-7">-->
 		          		
-		          	<g:form method="post" controller="empleados">
+		          	<g:form method="post" controller="empleados" action="agregarEmpleado">
                         <h2 class="featurette-heading">Nombre:</h2>
                         <g:textField name="nombre" value="${myValue}" />
                         <h2 class="featurette-heading">Apellido:</h2>
@@ -53,7 +53,7 @@
                       
                         <br>
                         <br>
-                       <button class="btn btn-primary btn-lg"><a style="color: white"href="/empleados">Agregar Empleado</a> </button> 
+                       <button class="btn btn-primary btn-lg"><a style="color: white">Agregar Empleado</a> </button> 
 
                     </g:form>
 		          			
