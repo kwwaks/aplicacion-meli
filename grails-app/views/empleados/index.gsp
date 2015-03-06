@@ -25,28 +25,31 @@
 			</div>
 	    </div>
 		<div class="container marketing" style="width: 60%">	
-				<g:each in="${listaEmpleados}" var="empleado">
+				<g:each in="${infoRegalos}" var="empleado">
 					<hr class="featurette-divider">
 			      	<div class="row featurette">	          		 
-			          		 <g:if test="${empleado.nombreProducto == null}">
+			          	
+
+			          		 <g:if test="${empleado.regalo == null}">
 			          		 	<div class="col-md-7">
-			          				<h2 class="featurette-heading">${empleado.nombre} ${empleado.apellido} ${empleado.obtenerFecha()}</h2>
+			          				<h2 class="featurette-heading">${empleado.nombre} ${empleado.apellido} ${empleado.fechaCumpleanios}</h2>
 			          				<a class="btn btn-primary btn-lg" style="color: white"href="/cumplesMeli/empleados/regalo/${empleado.id}">Agregar Regalo</a>
 			          			</div>
 							</g:if>
 			          		<g:else>
+			          		<!-- hay parte del if y del else repetida que se puede poner afuera-->
 			          	       	<div class="col-md-7">
-			          				<h2 class="featurette-heading">${empleado.nombre} ${empleado.apellido} ${empleado.obtenerFecha()}</h2>
-			          				<h2 class="featurette-heading"><span class="text-muted">${empleado.nombreProducto}</span></h2>
+			          				<h2 class="featurette-heading">${empleado.nombre} ${empleado.apellido} ${empleado.fechaCumpleanios}</h2>
+			          				<h2 class="featurette-heading"><span class="text-muted">${empleado.regalo.tituloProducto}</span></h2>
 			          				<a class="btn btn-primary btn-lg" style="color: white" href="/cumplesMeli/empleados/regalo/${empleado.id}">Cambiar Regalo</a>
 			        			</div>
 			          			<div class="col-md-5">	
-			          				<img class="featurette-image img-responsive" src="${empleado.urlFotoProducto}" width="300" alt="Generic placeholder image">
+			          				<img class="featurette-image img-responsive" src="${empleado.regalo.urlFotoProducto}" width="300" alt="Generic placeholder image">
 			        			</div>
 							</g:else>
+
 			        </div>
 			    </g:each>
-	      
 	      <hr class="featurette-divider">
 	    </div>
 	</body>

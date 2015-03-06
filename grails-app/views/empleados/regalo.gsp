@@ -45,7 +45,7 @@
 							</form>
 						</div>
 						<div class="col-md-5">
-							<img class="featurette-image img-responsive" src="#urlImagen#" alt="Generic placeholder image"/>
+							<img class="featurette-image img-responsive" src="#urlImagen#" alt="Generic placeholder image" width="300"/>
 						</div>
 					</div>
 				</div>'
