@@ -13,8 +13,4 @@ class Empleado {
     	nombre nullable: false;
     	apellido nullable: false;
     }
-
-    String obtenerFecha(){
-    	return this.fechaNacimiento.getDay()  + "/" + this.fechaNacimiento.getYear();
-    }
 }

@@ -2,23 +2,31 @@ package cumples
 import cumples.Empleado
 import java.util.Date
 import cumples.Regalo
+import cumples.Extras
 
 class EmpleadosController {
 
     def index() {
 
-    	[infoRegalos: Empleado.list().collect{
-    		def hayRegalo = it.regalos.find{it.anioProducto == (new Date().getYear())};
+    	def cumlesDelDia = Empleado.list().collect{
+    		def hayRegalo = it.regalos.find{
+    			it.anioProducto == (new Date().getYear());
+    			};
     		[
     			id: it.id,
     			nombre: it.nombre,
     			apellido: it.apellido,	
-    			fechaCumpleanios: it.obtenerFecha(),
+    			fechaCumpleanios: Extras.obtenerFecha(it.fechaNacimiento),
     			regalo: hayRegalo
     		]
     	}
 
+    	[infoRegalos: cumlesDelDia.findAll{
+    		it.fechaCumpleanios == Extras.obtenerFecha(new Date());
+    		}
     	];
+    		
+    	
     }
     
     def regalo(long id) {
@@ -31,8 +39,7 @@ class EmpleadosController {
 
 	def agregarProducto() {
 		Empleado miEmpleado = Empleado.get(params.idEmpleado as long);
-		Regalo miRegalo = new Regalo(tituloProducto: params.nombreProducto ,urlFotoProducto: params.urlFotoProducto, anioProducto: new Date().getYear());
-		//miRegalo.save(flush:true);
+		Regalo miRegalo = new Regalo(tituloProducto: params.nombreProducto ,urlFotoProducto: params.urlFotoProducto, anioProducto: new Date().year);
 		miEmpleado.regalos.add(miRegalo);
 		miEmpleado.save(flush:true);
 		redirect(controller: "Empleados", action:"index");
