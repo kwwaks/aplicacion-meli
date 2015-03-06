@@ -39,7 +39,13 @@ class EmpleadosController {
 
 	def agregarProducto() {
 		Empleado miEmpleado = Empleado.get(params.idEmpleado as long);
+
 		Regalo miRegalo = new Regalo(tituloProducto: params.nombreProducto ,urlFotoProducto: params.urlFotoProducto, anioProducto: new Date().year);
+		
+		def presente = miEmpleado.regalos.find{it.anioProducto == new Date().year};
+		if(presente != null){
+			miEmpleado.regalos.remove(presente);
+		}
 		miEmpleado.regalos.add(miRegalo);
 		miEmpleado.save(flush:true);
 		redirect(controller: "Empleados", action:"index");
