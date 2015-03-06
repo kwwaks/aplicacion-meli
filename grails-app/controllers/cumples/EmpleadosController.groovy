@@ -27,6 +27,8 @@ class EmpleadosController {
 	
 	def crearEmpleado() {}
 
+	def buscarEmpleado() {}
+
 	def agregarProducto() {
 		Empleado miEmpleado = Empleado.get(params.idEmpleado as long);
 		Regalo miRegalo = new Regalo(tituloProducto: params.nombreProducto ,urlFotoProducto: params.urlFotoProducto, anioProducto: new Date().getYear());

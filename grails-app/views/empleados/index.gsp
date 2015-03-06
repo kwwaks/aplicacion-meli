@@ -13,6 +13,7 @@
 	      <div class="container">
 	        <div id="navbar" class="navbar-collapse collapse">
 	          <ul class="nav navbar-nav navbar-right">
+	            <li ><a href="/cumplesMeli/empleados/buscarEmpleado">Buscar Empleado <span class="sr-only">(current)</span></a></li>
 	            <li class="active"><a href="/cumplesMeli/empleados/crearEmpleado">Crear Empleado <span class="sr-only">(current)</span></a></li>
 	          </ul>
 	        </div><!--/.nav-collapse -->
