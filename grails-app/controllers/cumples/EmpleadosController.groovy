@@ -57,12 +57,11 @@ class EmpleadosController {
 		redirect(controller: "Empleados", action:"index");
 	}	
 	def agregarEmpleado() {
-		
-		def contenidoNombre = params.nombre
-		def contenidoApellido = params.apellido
-		def contenidoFecha = params.fecha
-		def miEmpleado = new Empleado (nombre: contenidoNombre, apellido:contenidoApellido, fechaNacimiento: Date.parse("dd/MM/yyyy",contenidoFecha));	
-	    miEmpleado.save(flush:true)
-		redirect(controller: "Empleados", action:"index")			 
+		def contenidoNombre = params.nombre;
+		def contenidoApellido = params.apellido;
+		def contenidoFecha = params.fecha;
+		def miEmpleado = new Empleado (nombre: contenidoNombre, apellido:contenidoApellido, fechaNacimiento: Date.parse("yyyy-MM-dd",contenidoFecha));
+		miEmpleado.save(flush:true);
+		redirect(controller: "Empleados", action:"index");
 	}
 }
