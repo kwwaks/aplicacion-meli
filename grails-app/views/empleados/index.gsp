@@ -21,8 +21,14 @@
 	    </nav>
 		<div class="container">
 			<div style = "text-align: center" class="jumbotron">
-				<p style = "font-size: 30px">Cumpleaños de los Empleados</p>
-				<!-- <g:actionSubmit class="btn btn-primary btn-lg" value="${message(code:'Crear Empleado')}" action="crearEmpleado"/> -->
+				<p style = "font-size: 30px">Cumpleaños del Dia</p>
+				<p id="fechaDeHoy" style = "font-size: 30px" ></p>
+				<script>
+				//para ver la fecha facil en el home. Habria que mostrarla mas linda <------
+				var d = new Date();
+				var month = d.getMonth()+1;
+				var day = d.getDate();
+				$("#fechaDeHoy").html(day + "/" + month);</script>
 			</div>
 	    </div>
 		<div class="container marketing" style="width: 60%">	
