@@ -3,19 +3,20 @@
 	<head>
 		<link rel="stylesheet" type="text/css" href="${request.contextPath}/bootstrap/css/bootstrap.css">
         
-        <link href="${request.contextPath}/calendario_dw/calendario_dw-estilos.css" type="text/css" rel="STYLESHEET"> 
+       <!--   <link href="${request.contextPath}/calendario_dw/calendario_dw-estilos.css" type="text/css" rel="STYLESHEET"> -->
         
 		<script type="text/javascript" src="${request.contextPath}/js/jquery-2.1.3.js"></script>
 		<script type="text/javascript" src="${request.contextPath}/bootstrap/js/bootstrap.js"></script>
 		<link rel="icon" type="image/png" href="http://developers.mercadolibre.com/wp-content/uploads/logo_puzzle_slider.png" />
 		
-		<!-- <script type="text/javascript" src="${request.contextPath}/calendario_dw/jquery-1.4.4.min.js"></script> -->
-        <script type="text/javascript" src="${request.contextPath}/calendario_dw/calendario_dw.js"></script> 
+		
+        
+        <!--  <script type="text/javascript" src="${request.contextPath}/calendario_dw/calendario_dw.js"></script> 
 		<script type="text/javascript">
          $(document).ready(function(){
          $(".campofecha").calendarioDW();
           })
-        </script> 
+        </script> -->
 		
 		
 		<title>Crear Empleado</title>
@@ -49,19 +50,21 @@
                         <h2 class="featurette-heading">Apellido:</h2>
                         <g:textField name="apellido" value="${myValue}" />
                         <h2 class="featurette-heading">Fecha: </h2>
-                        <g:textField name="fecha" value="${myValue}" class="campofecha" /> 
+                        <!-- <g:textField name="fecha" value="${myValue}" class="campofecha" /> -->
+                       <input type="date" name="fecha" step="1" min="1930-01-01"
+                         max="2030-12-31" value="${new Date()}" autocomplete="on">
                       
                         <br>
                         <br>
                        <button class="btn btn-primary btn-lg"><a style="color: white">Agregar Empleado</a> </button> 
 
                     </g:form>
-		          			
-		        <!--  	</div>  -->
+		          		
+		         </div>  
 		 
 		    </div>
 	      <hr class="featurette-divider">
-	    </div>
-	   </div> 
+	 </div>
+	  
 	</body>
 </html>
