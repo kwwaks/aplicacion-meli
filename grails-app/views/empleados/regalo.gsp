@@ -41,6 +41,7 @@
 								<input type="hidden" name="idEmpleado" value="${idEmpleado}"/>
 								<input type="hidden" name="nombreProducto" value="#tituloItem#"/>
 								<input type="hidden" name="urlFotoProducto" value="#urlImagen#"/>
+								<input type="hidden" name="precioProducto" value="#precioItem#"/>
 								<button class="btn btn-primary btn-lg" style="color: white">Regalar</button>
 							</form>
 						</div>
@@ -83,6 +84,7 @@
 				var contenido = $("#template_respuesta_busqueda").html();
 				contenido = contenido.replace("#tituloItem#", item.title);
 				contenido = contenido.replace("#tituloItem#", item.title);
+				contenido = contenido.replace("#precioItem#", item.price);
 				contenido = contenido.replace("#precioItem#", item.price);
 				contenido = contenido.replace("#urlImagen#", item.pictures[0].url);
 				contenido = contenido.replace("#urlImagen#", item.pictures[0].url);

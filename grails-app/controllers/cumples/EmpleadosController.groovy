@@ -47,7 +47,7 @@ class EmpleadosController {
 
 	def agregarProducto() {
 		Empleado miEmpleado = Empleado.get(params.idEmpleado as long);
-		Regalo miRegalo = new Regalo(tituloProducto: params.nombreProducto ,urlFotoProducto: params.urlFotoProducto, anioProducto: new Date().year);
+		Regalo miRegalo = new Regalo(tituloProducto: params.nombreProducto ,urlFotoProducto: params.urlFotoProducto, anioProducto: new Date().year, precio: params.precioprecioProducto);
 		def presente = miEmpleado.regalos.find{it.anioProducto == new Date().year};
 		if(presente != null){
 			miEmpleado.regalos.remove(presente);
