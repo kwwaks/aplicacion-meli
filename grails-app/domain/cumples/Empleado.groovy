@@ -1,6 +1,8 @@
 package cumples
 import java.util.Date
+import grails.rest.Resource
 
+@Resource
 class Empleado {
 
 	String nombre;
