@@ -10,7 +10,7 @@ class EmpleadosController {
 
     	def cumlesDelDia = Empleado.list().collect{
     		def hayRegalo = it.regalos.find{
-    			it.anioProducto == (new Date().year);
+    			it.fechaProducto.year == (new Date().year);
     			};
     		[
     			id: it.id,
@@ -35,8 +35,9 @@ class EmpleadosController {
 
     def cancelar(long id){
 		Empleado miEmpleado = Empleado.get(id);
-		Regalo miRegalo = miEmpleado.regalos.find{it.anioProducto == new Date().year};
+		Regalo miRegalo = miEmpleado.regalos.find{it.fechaProducto.year == new Date().year};
 		miEmpleado.regalos.remove(miRegalo);
+		miRegalo.delete(flush:true);
 		miEmpleado.save(flush:true);
 		redirect(controller: "Empleados", action:"index");
     }
@@ -47,11 +48,13 @@ class EmpleadosController {
 
 	def agregarProducto() {
 		Empleado miEmpleado = Empleado.get(params.idEmpleado as long);
-		Regalo miRegalo = new Regalo(tituloProducto: params.nombreProducto ,urlFotoProducto: params.urlFotoProducto, anioProducto: new Date().year, precio: params.precioprecioProducto);
-		def presente = miEmpleado.regalos.find{it.anioProducto == new Date().year};
+		Regalo miRegalo = new Regalo(tituloProducto: params.nombreProducto ,urlFotoProducto: params.urlFotoProducto, fechaProducto: new Date(), precioProducto: params.precioProducto);
+		def presente = miEmpleado.regalos.find{it.fechaProducto.year == new Date().year};
 		if(presente != null){
 			miEmpleado.regalos.remove(presente);
+			presente.delete(flush:true);
 		}
+		miRegalo.save(flush:true);
 		miEmpleado.regalos.add(miRegalo);
 		miEmpleado.save(flush:true);
 		redirect(controller: "Empleados", action:"index");

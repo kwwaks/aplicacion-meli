@@ -1,6 +1,7 @@
 package cumples
 import cumples.Empleado
 import java.util.List
+import java.util.Date
 
 class EnvioMailsController {
 
@@ -8,11 +9,11 @@ class EnvioMailsController {
 
     	def empleados = Empleado.list();
     	def gastosDelMes = 0;
-		def mesActual = (new Date().getMonth()+1);
-
-    	for (int i = 0; i < empleados.size(); i++) {
-			if (empleados[i].fechaNacimiento.getMonth() == mesActual) {
-				def presente = empleados[i].regalos.find{it.anioProducto == new Date().year};
+		def mesActual = (new Date().month);
+			
+    	for (int i = 0; i < empleados.size(); i++) { 
+			if (empleados[i].fechaNacimiento.month == mesActual) {
+				def presente = empleados[i].regalos.find{it.fechaProducto.year == new Date().year};
 				if(presente != null) {
 					gastosDelMes = gastosDelMes + presente.precioProducto;
 				}
@@ -21,9 +22,9 @@ class EnvioMailsController {
 		}
 
 		sendMail {
-			to "lucasrossi20@gmail.com"
+			to "lucasrossi20@gmail.com", "ayejuy@hotmail.com", "franciscocurdi@gmail.com"
 			subject "Gastos del mes "
-			body 'Se gastaron en regalos'
+			body 'Se gastaron en regalos $' + gastosDelMes
 	  }
     }
 

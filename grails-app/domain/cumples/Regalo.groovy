@@ -1,11 +1,12 @@
 package cumples
+import java.util.Date
 
 class Regalo {
 
     String tituloProducto;
 	String urlFotoProducto;
-    int anioProducto;
-    int precioProducto;
+    Date fechaProducto;
+    double precioProducto;
 
     static belongTo = Empleado;
 }
