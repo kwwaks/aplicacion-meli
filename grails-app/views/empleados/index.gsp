@@ -14,8 +14,8 @@
 	        <div id="navbar" class="navbar-collapse collapse">
 	          <ul class="nav navbar-nav navbar-right">
 	            <li ><a href="/cumplesMeli/empleados/buscarEmpleado">Buscar Empleado<span class="sr-only">(current)</span></a></li>
-	            <li ><a href="#" data-toggle="modal" data-target="#myModal">Gastos Mesuales<span class="sr-only">(current)</span></a></li>
-	            <li class="active"><a href="/cumplesMeli/empleados/crearEmpleado">Crear Empleado<span class="sr-only">(current)</span></a></li>
+	            <li ><a href="#" data-toggle="modal" data-target="#envioMail">Gastos Mesuales<span class="sr-only">(current)</span></a></li>
+	            <li class="active"><a href="#" data-toggle="modal" data-target="#myModal">Crear Empleado <span class="sr-only">(current)</span></a></li>
 	          </ul>
 	        </div><!--/.nav-collapse -->
 	      </div>
@@ -59,13 +59,13 @@
 	      <hr class="featurette-divider">
 	    </div>
 
-	    <!-- Modal -->
-		<div class="modal fade bs-example-modal-sm" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+	    <!-- Modal envioMail-->
+		<div class="modal fade bs-example-modal-sm" id="envioMail" role="dialog" aria-labelledby="myModalLabelEnvio" aria-hidden="true" >
 		  <div class="modal-dialog">
 		    <div class="modal-content">
 		      <div class="modal-header">
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		        <h4 class="modal-title"  style="text-align: center" id="myModalLabel">Envio de Gastos Mesuales</h4>
+		        <h4 class="modal-title"  style="text-align: center" id="myModalLabelEnvio">Envio de Gastos Mesuales</h4>
 		      </div>
 		    <div class="modal-body">
 		        <div class="container marketing" style="width: 60%">	
@@ -76,13 +76,45 @@
 							  <input type="text" class="form-control" placeholder="ejemplo@ejemplo.com" name="mail">
 							</div>
 			                <br>
-			               <button class="btn btn-primary btn-lg"><a style="color: white">Enviar</a> </button> 
-                    </g:form>
+			               <button class="btn btn-primary btn-lg" id="botonEnviar" data-loading-text="Enviando..." autocomplete="off"><a style="color: white">Enviar</a> </button> 
+                    	</g:form>
 		         	</div>  
 		      	</div>
 		    </div>
 		  </div>
 		</div>
-
+		</div>
 	</body>
+
+		<!-- Modal -->
+		<div class="modal fade bs-example-modal-sm" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title"  style="text-align: center" id="myModalLabel">Agregar Empleado</h4>
+		      </div>
+		    <div class="modal-body">
+		        <div class="container marketing" style="width: 40%">	
+			     	<div class="row featurette" >
+			          	<g:form method="post" controller="empleados" action="agregarEmpleado">
+	                        <h2 class="featurette-heading">Nombre:</h2>
+	                        <g:textField name="nombre" value="${myValue}" />
+	                        <h2 class="featurette-heading">Apellido:</h2>
+	                        <g:textField name="apellido" value="${myValue}" />
+	                        <h2 class="featurette-heading">Fecha: </h2>
+	                       <input type="date" name="fecha" step="1" min="1930-01-01"
+	                         max="2030-12-31" value="${new Date()}" autocomplete="on">
+	                        <br>
+	                        <br>
+	                        <br>
+	                       <button class="btn btn-primary btn-lg"><a style="color: white">Agregar Empleado</a> </button> 
+	                    </g:form>  
+		         	</div>  
+		      	</div>
+		    </div>
+		  </div>
+		</div>
+		</div>
+</script>
 </html>
