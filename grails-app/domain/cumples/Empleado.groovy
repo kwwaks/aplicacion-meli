@@ -2,7 +2,7 @@ package cumples
 import java.util.Date
 import grails.rest.Resource
 
-@Resource
+@Resource(uri= "/empleado")
 class Empleado {
 
 	String nombre;

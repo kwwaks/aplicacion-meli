@@ -24,43 +24,24 @@
 				<div>
 					<g:select name="userID" from="${listaEmpleados}" optionValue="nombre" optionKey="id" value="${nombre}" noSelection="['':'-Selecciona el empleado-']"/>
 				</div>
-				<div><a class="btn btn-primary btn-lg" style="color: white" href="/cumplesMeli/empleados/regalo/${empleado.id}">Cambiar Regalo</a>
-			        <button class="btn btn-default" id="botonBuscar">Buscar</button>
+				<div>
+			        <button type="button" class="btn btn-default" id="botonBuscar">Buscar</button>
 				</div>
 			</g:form>
 		</div>
 
-			<div class="container marketing" style="width: 60%">	
-  				<div id="template_respuesta_busqueda" style="display: none">
-					<hr class="featurette-divider">
-			      	<div class="row featurette">
-						<div class="col-md-7">
-								<h2 class="featurette-heading">${regalo_empleado.tituloProducto}</h2>
-								<h2 class="featurette-heading"><span class="text-muted">${regalo_empleado.anioProducto}</span></h2>
-						</div>
-							<div class="col-md-5">	
-								<img class="featurette-image img-responsive" src="${regalo_empleado.urlFotoProducto}" width="300" alt="Generic placeholder image">
-						</div>
-			        </div>
-	      			<hr class="featurette-divider">
-	    		</div>
-	    		<div id="respuesta_busqueda"></div>
-	    	</div>
-
 	    	<script type="text/javascript">
 	  			$("#botonBuscar").click(function () {
-					$.get("/cumples/empleado.json");
+					$.get("/cumplesMeli/empleado/" + $("#userID").val() + ".json")
 					.done(function(data) {
 						$("#respuesta_busqueda").empty();
 						$.each(data, mostrarItem);
 				});
 		});
 				
-				function mostrarItem () {
+				function mostrarItem (index, dato) {
+					console.log(dato.regalos);
 					
-					var contenido = $("#template_respuesta_busqueda").html();
-					contenido = contenido.replace("#regalos_empleados#", empleadoSeleccionado.regalos);
-					$("#respuesta_busqueda").append(contenido);
 				}
 				
 				function mostrarError() {

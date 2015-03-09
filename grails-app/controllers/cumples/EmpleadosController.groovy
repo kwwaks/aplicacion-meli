@@ -44,7 +44,9 @@ class EmpleadosController {
 	
 	def crearEmpleado() {}
 
-	def buscarEmpleado() {}
+	def buscarEmpleado() {
+		[listaEmpleados: Empleado.list()];
+	}
 
 	def agregarProducto() {
 		Empleado miEmpleado = Empleado.get(params.idEmpleado as long);
