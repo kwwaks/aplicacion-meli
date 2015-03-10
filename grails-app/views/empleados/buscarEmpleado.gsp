@@ -44,6 +44,12 @@
 							</div>
 						</div>'
 		  			</div>
+			<div class="jumbotron" id="nombre_buscado_template" style="display: none">
+				<h2>#nombreUsuario# #apellidoUsuario#</h2>
+				<p>Fecha de nacimiento: #diaNacimiento# #mesNacimiento# #anioNacimiento#</p>
+				<a class="btn btn-danger" style="color: white" href="/cumplesMeli/empleados/eliminarEmpleado/#idEmpleado#">Eliminar Empleado</a>
+			</div>
+		  	<div id="respuesta_nombre_buscado"></div>
 		  	<div id="respuesta_busqueda"></div>
 		</div>
 
@@ -52,15 +58,23 @@
 					$.get("/cumplesMeli/empleado/" + $("#userID").val() + ".json")
 					.done(function(data) {
 						$("#respuesta_busqueda").empty();
+						$("#respuesta_nombre_buscado").empty();
+						var contenido = $("#nombre_buscado_template").html();
+						contenido = contenido.replace("#nombreUsuario#", data.nombre);
+						contenido = contenido.replace("#apellidoUsuario#", data.apellido);
+						contenido = contenido.replace("#idEmpleado#", data.id);
+						contenido = contenido.replace("#anioNacimiento#", data.fechaNacimiento.substring(0,4));
+						contenido = contenido.replace("#mesNacimiento#", data.fechaNacimiento.substring(5,7));
+						contenido = contenido.replace("#diaNacimiento#", data.fechaNacimiento.substring(8,10));
+						$("#respuesta_nombre_buscado").append(contenido);
 						$.each(data.regalos, mostrarRegalo);
 				});
 		});
 				
 				function mostrarRegalo (index, dato) {
-					console.log(dato.id)
 					$.get("/cumplesMeli/misRegalos/" + dato.id + ".json")
 					.done(function(dato){
-											var contenido = $("#template_respuesta_busqueda").html();
+					var contenido = $("#template_respuesta_busqueda").html();
 					contenido = contenido.replace("#tituloItem#", dato.tituloProducto);
 					contenido = contenido.replace("#anioItem#", dato.fechaProducto.substring(0,4));
 					contenido = contenido.replace("#urlImagen#", dato.urlFotoProducto);

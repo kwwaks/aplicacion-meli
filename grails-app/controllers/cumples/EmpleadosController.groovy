@@ -41,6 +41,17 @@ class EmpleadosController {
 		miEmpleado.save(flush:true);
 		redirect(controller: "Empleados", action:"index");
     }
+
+    def eliminarEmpleado(long id){
+		Empleado miEmpleado = Empleado.get(id);
+		for (int i = 0; i < miEmpleado.regalos.size(); i++){
+			Regalo miRegalo = miEmpleado.regalos[i];
+			miEmpleado.regalos.remove(miRegalo);
+			miRegalo.delete(flush:true);
+		}
+		miEmpleado.delete(flush:true);
+		redirect(controller: "Empleados", action:"index");
+    }
 	
 	def crearEmpleado() {}
 
