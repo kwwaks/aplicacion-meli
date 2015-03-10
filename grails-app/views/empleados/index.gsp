@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="${request.contextPath}/bootstrap/css/bootstrap.css">
-
+		<link rel="stylesheet" type="text/css" href="${request.contextPath}/css/validacion.css">
 		<script type="text/javascript" src="${request.contextPath}/js/jquery-2.1.3.js"></script>
 		<script type="text/javascript" src="${request.contextPath}/bootstrap/js/bootstrap.js"></script>
 		<link rel="icon" type="image/png" href="http://developers.mercadolibre.com/wp-content/uploads/logo_puzzle_slider.png" />
@@ -72,10 +72,15 @@
 			     	<div class="row featurette" >
 	                    <g:form controller="envioMails" action="mandarMail">
 			                <div class="input-group">
+
+
 							  <span class="input-group-addon" id="basic-addon1">Enviar a:</span>
-							  <input type="text" class="form-control" placeholder="ejemplo@ejemplo.com" name="mail">
+							  <input id="campoMail" type="text" class="form-control" placeholder="ejemplo@ejemplo.com" name="mail">
 							</div>
 			                <br>
+
+	                        <span id="spanMail" class="error">Ingresar mail</span> 
+
 			               <button class="btn btn-primary btn-lg" id="botonEnviar" data-loading-text="Enviando..." autocomplete="off"><a style="color: white">Enviar</a> </button> 
                     	</g:form>
 		         	</div>  
@@ -94,22 +99,74 @@
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 		        <h4 class="modal-title"  style="text-align: center" id="myModalLabel">Agregar Empleado</h4>
 		      </div>
+
 		    <div class="modal-body">
 		        <div class="container marketing" style="width: 40%">	
 			     	<div class="row featurette" >
 			          	<g:form method="post" controller="empleados" action="agregarEmpleado">
+			          	<div>
 	                        <h2 class="featurette-heading">Nombre:</h2>
-	                        <g:textField name="nombre" value="${myValue}" />
+	                        <span id="spanNombre" class="error">Completar campo</span>
+	                        <g:textField id="campoNombre" name="nombre" value="${myValue}" />
+	                    </div>
+	                    <div>
 	                        <h2 class="featurette-heading">Apellido:</h2>
-	                        <g:textField name="apellido" value="${myValue}" />
+   	                        <span id="spanApellido" class="error">Completar campo</span>
+	                        <g:textField id="campoApellido" name="apellido" value="${myValue}" />
+	                    </div>
+	                    <div>
 	                        <h2 class="featurette-heading">Fecha: </h2>
-	                       <input type="date" name="fecha" step="1" min="1930-01-01"
+	                        <span id="spanFecha"  class="error">Elegir fecha</span> 
+	                       <input id="campoFecha" type="date" name="fecha" step="1" min="1930-01-01"
 	                         max="2030-12-31" value="${new Date()}" autocomplete="on">
-	                        <br>
-	                        <br>
-	                        <br>
-	                       <button class="btn btn-primary btn-lg"><a style="color: white">Agregar Empleado</a> </button> 
+	                    </div>
+
+	                       <br>
+	                       <br>
+
+	                       <button id="botonAgregarEmpleado" class="btn btn-primary btn-lg"><a style="color: white">Agregar Empleado</a> </button> 
+
+
 	                    </g:form>  
+	                    <script>
+
+							function colorearCampo() {
+								var campo = $(this);
+								var contenido = campo.val();
+								if(contenido != "")
+									campo.removeClass("invalid").addClass("valid");
+								else
+								   	campo.removeClass("valid").addClass("invalid");
+							}
+
+							$("#campoNombre").on("input",colorearCampo);
+							$("#campoApellido").on("input",colorearCampo);
+							$("#botonAgregarEmpleado").click(function (event){
+							    var validadoOK = true;
+								var elemento = $("#campoNombre");
+								if(!elemento.hasClass("valid")){
+									$("#spanNombre").removeClass("error").addClass("error_show")
+									validadoOK = false;
+								}
+
+								var elemento = $("#campoApellido");
+								if(!elemento.hasClass("valid")){
+									$("#spanApellido").removeClass("error").addClass("error_show")
+									validadoOK = false;
+								}
+
+								if($("#campoFecha").val() == ""){
+									$("#spanFecha").removeClass("error").addClass("error_show")
+									validadoOK = false;
+								}
+
+								if(!validadoOK)
+									event.preventDefault();
+							});
+
+
+						</script>
+
 		         	</div>  
 		      	</div>
 		    </div>
@@ -118,3 +175,5 @@
 		</div>
 </script>
 </html>
+
+
