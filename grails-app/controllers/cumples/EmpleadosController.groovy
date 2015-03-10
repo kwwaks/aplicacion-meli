@@ -76,8 +76,18 @@ class EmpleadosController {
 		def contenidoNombre = params.nombre;
 		def contenidoApellido = params.apellido;
 		def contenidoFecha = params.fecha;
-		def miEmpleado = new Empleado (nombre: contenidoNombre, apellido:contenidoApellido, fechaNacimiento: Date.parse("yyyy-MM-dd",contenidoFecha));
-		miEmpleado.save(flush:true);
+
+		def existeEmpleado = Empleado.list().find{
+			(it.nombre == contenidoNombre) &&
+			(it.apellido == contenidoApellido) && 
+			(it.fechaNacimiento == Date.parse("yyyy-MM-dd",contenidoFecha));
+		};
+		if( existeEmpleado == null){
+			def miEmpleado = new Empleado (nombre: contenidoNombre, apellido:contenidoApellido, fechaNacimiento: Date.parse("yyyy-MM-dd",contenidoFecha));
+			miEmpleado.save(flush:true);
+		}
+
 		redirect(controller: "Empleados", action:"index");
 	}
+
 }
