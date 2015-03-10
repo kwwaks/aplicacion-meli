@@ -30,20 +30,45 @@
 			</g:form>
 		</div>
 
+		<div class="container marketing">
+		  			<div id="template_respuesta_busqueda" style="display: none">
+						<div class="container marketing">
+							<hr class="featurette-divider">
+							<div class="row featurette">
+								<div class="col-md-7">
+									<h2 class="featurette-heading"> #tituloItem# <span class="text-muted"> Año #anioItem#</span></h2>
+								</div>
+								<div class="col-md-5">
+									<img class="featurette-image img-responsive" src="#urlImagen#" alt="Generic placeholder image" width="300"/>
+								</div>
+							</div>
+						</div>'
+		  			</div>
+		  	<div id="respuesta_busqueda"></div>
+		</div>
+
 	    	<script type="text/javascript">
 	  			$("#botonBuscar").click(function () {
 					$.get("/cumplesMeli/empleado/" + $("#userID").val() + ".json")
 					.done(function(data) {
 						$("#respuesta_busqueda").empty();
-						$.each(data, mostrarItem);
+						$.each(data.regalos, mostrarRegalo);
 				});
 		});
 				
-				function mostrarItem (index, dato) {
-					console.log(dato.regalos);
+				function mostrarRegalo (index, dato) {
+					console.log(dato.id)
+					$.get("/cumplesMeli/misRegalos/" + dato.id + ".json")
+					.done(function(dato){
+											var contenido = $("#template_respuesta_busqueda").html();
+					contenido = contenido.replace("#tituloItem#", dato.tituloProducto);
+					contenido = contenido.replace("#anioItem#", dato.fechaProducto.substring(0,4));
+					contenido = contenido.replace("#urlImagen#", dato.urlFotoProducto);
+					$("#respuesta_busqueda").append(contenido);
+					});
 					
 				}
-				
+
 				function mostrarError() {
 					$("#respuesta_busqueda").html( "<li>Se produjo un errors</li>" );
 				}
