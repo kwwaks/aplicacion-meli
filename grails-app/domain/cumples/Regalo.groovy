@@ -10,5 +10,5 @@ class Regalo {
     Date fechaProducto;
     double precioProducto;
 
-    static belongTo = Empleado;
+    static belongTo = [empleado: Empleado];
 }
