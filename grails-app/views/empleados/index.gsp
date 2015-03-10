@@ -14,7 +14,6 @@
 	        <div id="navbar" class="navbar-collapse collapse">
 	          <ul class="nav navbar-nav navbar-right">
 	            <li ><a href="/cumplesMeli/empleados/buscarEmpleado">Buscar Empleado<span class="sr-only">(current)</span></a></li>
-	            <li ><a href="#" data-toggle="modal" data-target="#envioMail">Gastos Mesuales<span class="sr-only">(current)</span></a></li>
 	            <li class="active"><a href="#" data-toggle="modal" data-target="#myModal">Crear Empleado <span class="sr-only">(current)</span></a></li>
 	          </ul>
 	        </div><!--/.nav-collapse -->
@@ -58,38 +57,6 @@
 			    </g:each>
 	      <hr class="featurette-divider">
 	    </div>
-
-	    <!-- Modal envioMail-->
-		<div class="modal fade bs-example-modal-sm" id="envioMail" role="dialog" aria-labelledby="myModalLabelEnvio" aria-hidden="true" >
-		  <div class="modal-dialog">
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		        <h4 class="modal-title"  style="text-align: center" id="myModalLabelEnvio">Envio de Gastos Mesuales</h4>
-		      </div>
-		    <div class="modal-body">
-		        <div class="container marketing" style="width: 60%">	
-			     	<div class="row featurette" >
-	                    <g:form controller="envioMails" action="mandarMail">
-			                <div class="input-group">
-
-
-							  <span class="input-group-addon" id="basic-addon1">Enviar a:</span>
-							  <input id="campoMail" type="text" class="form-control" placeholder="ejemplo@ejemplo.com" name="mail">
-							</div>
-			                <br>
-
-	                        <span id="spanMail" class="error">Ingresar mail</span> 
-
-			               <button class="btn btn-primary btn-lg" id="botonEnviar" data-loading-text="Enviando..." autocomplete="off"><a style="color: white">Enviar</a> </button> 
-                    	</g:form>
-		         	</div>  
-		      	</div>
-		    </div>
-		  </div>
-		</div>
-		</div>
-	</body>
 
 		<!-- Modal -->
 		<div class="modal fade bs-example-modal-sm" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >

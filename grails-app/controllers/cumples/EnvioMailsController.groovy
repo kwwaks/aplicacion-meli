@@ -5,10 +5,6 @@ import java.util.Date
 
 class EnvioMailsController {
 
-	def index() {
-		
-	}
-
     def mandarMail() {
 
     	def empleados = Empleado.list();
@@ -26,11 +22,10 @@ class EnvioMailsController {
 		}
 
 		sendMail {
-			to params.mail
+			to "lucasrossi20@gmail.com", "franciscocurdi@gmail.com", "ayejuy@hotmail.com"
 			subject "Gastos del mes "
 			body 'Se gastaron en regalos $' + gastosDelMes
 	  }
-		redirect(controller: "Empleados", action:"index");
     }
 
 }

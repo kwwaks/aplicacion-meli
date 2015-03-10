@@ -9,6 +9,7 @@
 		<title>Cumples MELI</title>
 	</head>
 	<body>
+
 	    <nav class="navbar navbar-default">
 	      <div class="container">
 	        <div id="navbar" class="navbar-collapse collapse">
@@ -18,5 +19,11 @@
 	        </div><!--/.nav-collapse -->
 	      </div>
 	    </nav>
+	    <div class="container marketing" style="width: 60%">
+		    <div class="alert alert-success alert-dismissible" role="alert">
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			  <strong>Se envió con exito el mail</strong>
+			</div>
+		</div>
 	</body>
 </html>
