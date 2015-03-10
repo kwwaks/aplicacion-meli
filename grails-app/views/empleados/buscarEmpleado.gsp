@@ -22,7 +22,7 @@
 	    <div class="container marketing">
 		    <g:form method="get" controller="empleados" action="jsonBuscarEmpleados">
 				<div>
-					<g:select name="userID" from="${listaEmpleados}" optionValue="nombre" optionKey="id" value="${nombre}" noSelection="['':'-Selecciona el empleado-']"/>
+					<g:select name="userID" from="${listaEmpleados}" optionKey="id" noSelection="['':'-Selecciona el empleado-']"/>
 				</div>
 				<div>
 			        <button type="button" class="btn btn-default" id="botonBuscar">Buscar</button>
