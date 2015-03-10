@@ -73,17 +73,14 @@
 			          	<g:form method="post" controller="empleados" action="agregarEmpleado">
 			          	<div>
 	                        <h2 class="featurette-heading">Nombre:</h2>
-	                        <span id="spanNombre" class="error">Completar campo</span>
-	                        <g:textField id="campoNombre" name="nombre" value="${myValue}" />
+	                        <g:textField pattern="[A-Za-z]+" placeholder="Ingrese el nombre" id="campoNombre" name="nombre" value="${myValue}" />
 	                    </div>
 	                    <div>
 	                        <h2 class="featurette-heading">Apellido:</h2>
-   	                        <span id="spanApellido" class="error">Completar campo</span>
-	                        <g:textField id="campoApellido" name="apellido" value="${myValue}" />
+	                        <g:textField pattern="[A-Za-z]+" placeholder="Ingrese el apellido" id="campoApellido" name="apellido" value="${myValue}" />
 	                    </div>
 	                    <div>
 	                        <h2 class="featurette-heading">Fecha: </h2>
-	                        <span id="spanFecha"  class="error">Elegir fecha</span> 
 	                       <input id="campoFecha" type="date" name="fecha" step="1" min="1930-01-01"
 	                         max="2030-12-31" value="${new Date()}" autocomplete="on">
 	                    </div>
@@ -112,18 +109,15 @@
 							    var validadoOK = true;
 								var elemento = $("#campoNombre");
 								if(!elemento.hasClass("valid")){
-									$("#spanNombre").removeClass("error").addClass("error_show")
 									validadoOK = false;
 								}
 
 								var elemento = $("#campoApellido");
 								if(!elemento.hasClass("valid")){
-									$("#spanApellido").removeClass("error").addClass("error_show")
 									validadoOK = false;
 								}
 
 								if($("#campoFecha").val() == ""){
-									$("#spanFecha").removeClass("error").addClass("error_show")
 									validadoOK = false;
 								}
 
