@@ -7,15 +7,19 @@
 	<link rel="icon" type="image/png" href="http://developers.mercadolibre.com/wp-content/uploads/logo_puzzle_slider.png"/>
 </head>
 <body class="container" style="width: 60%;">
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Nombre</th><th>Apellido</th><th>Cumplea&ntilde;os</th><th>Modificar/Eliminar</th>
-			</tr>
-		</thead>
-		<tbody id="listaEmpleados">
-		</tbody>
-	</table>
+	<body data-target=".navbar-example">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Nombre</th><th>Apellido</th><th>Cumplea&ntilde;os</th><th>Modificar/Eliminar</th>
+				</tr>
+			</thead>
+		</table>
+		<div style="height: 250px; overflow: auto">
+			<table class="table">
+						<tbody id="listaEmpleados"></tbody>
+			</table>
+		</div>
 	<form id="formCreate" style="width: 60%; margin: 0 auto">
 		<div class="form-group">
 			<label>Nombre</label>
