@@ -16,3 +16,6 @@ input.valid, textarea.valid{
     border: 2px solid green;
 }
 
+.ocultar{
+	display: none;
+}

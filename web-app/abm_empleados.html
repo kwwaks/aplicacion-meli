@@ -5,6 +5,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<script type="text/javascript" src="js/jquery-2.1.3.js"></script>
 	<link rel="icon" type="image/png" href="http://developers.mercadolibre.com/wp-content/uploads/logo_puzzle_slider.png"/>
+	<link rel="stylesheet" type="text/css" href="css/validacion.css">
 </head>
 <body class="container" style="width: 60%;">
 	<body data-target=".navbar-example">
@@ -34,6 +35,7 @@
 			<input class="form-control" type="text" placeholder="Ingrese la fecha aaaa/mm/dd" name="nacimiento" id="fechaEmpleado"/>
 		</div>
 		<div style="text-align: right">
+			<button type="button" class="ocultar" id="botonAceptar">Aceptar</button>
 			<button type="button" class="btn btn-success" id="botonCrear">Crear empleado</button>
 			<button type="button" class="btn btn-danger" id="botonCancelar">Cancelar</button>
 		</div>
@@ -46,7 +48,7 @@
 			<td>#fechaNacimientoEmpleado</td>
 			<td>
 				<form> 
-					<button type="button" class="btn btn-xs btn-primary" id="botonModificar">Modificar</button>
+					<button type="button" onclick="editarEmpleado(#idEmpleado)" class="btn btn-xs btn-primary" id="botonModificar">Modificar</button>
 					<button type="button" onclick="eliminarEmpleado(#idEmpleado)" class="btn btn-xs btn-danger" id="botonEliminar">Eliminar</button>
 				</form>
 			</td>
@@ -55,7 +57,12 @@
 
 	<script type="text/javascript">
 		$("#botonCrear").click(crearEmpleado);
-		$("#botonEliminar").click(eliminarEmpleado);
+		$("#botonAceptar").click(actualizarEmpleado);
+		$("#botonCancelar").click(function (){
+			limpiar();
+			$("#botonCrear").attr("class", "btn btn-success");
+			$("#botonAceptar").attr("class", "ocultar");
+		});
 
 		function eliminarEmpleado(id) {
 			var promise = $.ajax("/cumplesMeli/empleado/" + id + ".json", {
@@ -64,6 +71,44 @@
 				$("#listaEmpleados").empty();
 				mostrarEmpleadosInicio();
 			});
+		};
+
+
+		function editarEmpleado (id){
+			globalID = id; //id para el boton aceptar
+
+			var promise = $.get("/cumplesMeli/empleado/" + id + ".json");
+			promise.done(function (empleado) {
+				$("#nombreEmpleado").val(empleado.nombre);
+				$("#apellidoEmpleado").val(empleado.apellido);
+				var anio = empleado.fechaNacimiento.substring(0,4);
+				var mes = empleado.fechaNacimiento.substring(5,7);
+				var dia = empleado.fechaNacimiento.substring(8,10);
+				var fecha = anio + "/" + mes + "/"  + dia;
+				$("#fechaEmpleado").val(fecha);
+				$("#botonAceptar").attr("class", "btn btn-primary");
+				$("#botonCrear").attr("class", "ocultar");
+			});
+
+		}
+
+		function actualizarEmpleado(){
+			var promise = $.ajax("/cumplesMeli/empleado/" + globalID + ".json", {
+				method: "PUT",
+				contentType: 'application/json; charset=utf-8',
+				data: JSON.stringify({
+					nombre: $("#nombreEmpleado").val(),
+					apellido: $("#apellidoEmpleado").val(),
+					fechaNacimiento: $("#fechaEmpleado").val()
+				})
+			});
+			promise.done(function (empleado){
+				$("#listaEmpleados").empty();
+				limpiar();
+				mostrarEmpleadosInicio();
+				$("#botonCrear").attr("class", "btn btn-success");
+				$("#botonAceptar").attr("class", "ocultar");
+			})
 		};
 
 		function mostrarEmpleadosInicio() {
@@ -93,7 +138,6 @@
 
 		function mostrarEmpleado(index, empleado) {
 			var fila = $("#template_fila").html();
-			console.log(empleado);
 			fila = fila.replace("#nombreEmpleado", empleado.nombre);
 			fila = fila.replace("#apellidoEmpleado", empleado.apellido);
 			fila = fila.replace("#fechaNacimientoEmpleado", empleado.fechaNacimiento.substring(0,10));
