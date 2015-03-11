@@ -10,7 +10,7 @@
 	<table class="table">
 		<thead>
 			<tr>
-				<th>Nombre</th><th>Apellido</th><th>Cumplea&ntilde;os</th>
+				<th>Nombre</th><th>Apellido</th><th>Cumplea&ntilde;os</th><th>Modificar/Eliminar</th>
 			</tr>
 		</thead>
 		<tbody id="listaEmpleados">
@@ -40,11 +40,34 @@
 			<td>#nombreEmpleado</td>
 			<td>#apellidoEmpleado</td>
 			<td>#fechaNacimientoEmpleado</td>
+			<td>
+				<form> 
+					<button type="button" class="btn btn-xs btn-primary" id="botonModificar">Modificar</button>
+					<button type="button" onclick="eliminarEmpleado(#idEmpleado)" class="btn btn-xs btn-danger" id="botonEliminar">Eliminar</button>
+				</form>
+			</td>
 		</tr>
 	</script>
 
 	<script type="text/javascript">
 		$("#botonCrear").click(crearEmpleado);
+		$("#botonEliminar").click(eliminarEmpleado);
+
+		function eliminarEmpleado(id) {
+			var promise = $.ajax("/cumplesMeli/empleado/" + id + ".json", {
+				method: "DELETE"});
+			promise.done(function() {
+				$("#listaEmpleados").empty();
+				mostrarEmpleadosInicio();
+			});
+		};
+
+		function mostrarEmpleadosInicio() {
+			var promise = $.get("/cumplesMeli/empleado.json");
+			promise.done(function (empleados){
+				$.each(empleados, mostrarEmpleado);
+			});
+		}
 
 		function crearEmpleado() {
 			var promise = $.ajax("/cumplesMeli/empleado.json", {
@@ -55,26 +78,32 @@
 					apellido: $("#apellidoEmpleado").val(),
 					fechaNacimiento: $("#fechaEmpleado").val()
 				})
-			})
+			});
 
 			promise.done(function (empleado){
-				console.log(empleado);
-				var fila = $("#template_fila").html();
-
-				fila = fila.replace("#idEmpleado", empleado.id);
-				fila = fila.replace("#nombreEmpleado", empleado.nombre);
-				fila = fila.replace("#apellidoEmpleado", empleado.apellido);
-				fila = fila.replace("#fechaNacimientoEmpleado", empleado.fechaNacimiento.substring(0,10));
-
-				$("#listaEmpleados").append(fila);
+				mostrarEmpleado(0, empleado);
 				limpiar();
 			})
 
-			function limpiar() {
-				$("#nombreEmpleado").val("");
-				$("#apellidoEmpleado").val("");
-				$("#fechaEmpleado").val("");
-			}
 		};
+
+		function mostrarEmpleado(index, empleado) {
+			var fila = $("#template_fila").html();
+			console.log(empleado);
+			fila = fila.replace("#nombreEmpleado", empleado.nombre);
+			fila = fila.replace("#apellidoEmpleado", empleado.apellido);
+			fila = fila.replace("#fechaNacimientoEmpleado", empleado.fechaNacimiento.substring(0,10));
+			fila = fila.replace(/#idEmpleado/g, empleado.id); // /g cambia todos los idEmpleado
+
+			$("#listaEmpleados").append(fila);
+		};
+
+		function limpiar() {
+			$("#nombreEmpleado").val("");
+			$("#apellidoEmpleado").val("");
+			$("#fechaEmpleado").val("");
+		};
+
+		mostrarEmpleadosInicio();
 	</script>
 </body>
