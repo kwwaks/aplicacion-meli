@@ -48,6 +48,7 @@
 				<h2>#nombreUsuario# #apellidoUsuario#</h2>
 				<p>Fecha de nacimiento: #diaNacimiento# #mesNacimiento# #anioNacimiento#</p>
 				<a class="btn btn-danger" style="color: white" href="/cumplesMeli/empleados/eliminarEmpleado/#idEmpleado#">Eliminar Empleado</a>
+				<a class="btn btn-primary" style="color: white"href="/cumplesMeli/empleados/regalo/#idEmpleado#">Agregar Regalo</a>
 			</div>
 		  	<div id="respuesta_nombre_buscado"></div>
 		  	<div id="respuesta_busqueda"></div>
@@ -62,6 +63,7 @@
 						var contenido = $("#nombre_buscado_template").html();
 						contenido = contenido.replace("#nombreUsuario#", data.nombre);
 						contenido = contenido.replace("#apellidoUsuario#", data.apellido);
+						contenido = contenido.replace("#idEmpleado#", data.id);
 						contenido = contenido.replace("#idEmpleado#", data.id);
 						contenido = contenido.replace("#anioNacimiento#", data.fechaNacimiento.substring(0,4));
 						contenido = contenido.replace("#mesNacimiento#", data.fechaNacimiento.substring(5,7));

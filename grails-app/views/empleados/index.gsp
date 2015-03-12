@@ -41,14 +41,14 @@
 			          		<h2 class="featurette-heading">${empleado.nombre} ${empleado.apellido} ${empleado.fechaCumpleanios}</h2>
 			          		 <g:if test="${empleado.regalo == null}">
 			          		 	<div class="col-md-7">
-			          				<a class="btn btn-primary btn-lg" style="color: white"href="/cumplesMeli/empleados/regalo/${empleado.id}">Agregar Regalo</a>
+			          				<a class="btn btn-primary" style="color: white"href="/cumplesMeli/empleados/regalo/${empleado.id}">Agregar Regalo</a>
 			          			</div>
 							</g:if>
 			          		<g:else>
 			          	       	<div class="col-md-7">
 			          				<h2 class="featurette-heading"><span class="text-muted">${empleado.regalo.tituloProducto}</span></h2>
-			          				<a class="btn btn-primary btn-lg" style="color: white" href="/cumplesMeli/empleados/regalo/${empleado.id}">Cambiar Regalo</a>
-			          				<a class="btn btn-primary btn-lg" style="color: white" href="/cumplesMeli/empleados/cancelar/${empleado.id}">Cancelar Regalo</a>			          				
+			          				<a class="btn btn-primary" style="color: white" href="/cumplesMeli/empleados/regalo/${empleado.id}">Cambiar Regalo</a>
+			          				<a class="btn btn-primary" style="color: white" href="/cumplesMeli/empleados/cancelar/${empleado.id}">Cancelar Regalo</a>			          				
 			        			</div>
 			          			<div class="col-md-5">	
 			          				<img class="featurette-image img-responsive" src="${empleado.regalo.urlFotoProducto}" width="300" alt="Generic placeholder image">
@@ -90,7 +90,7 @@
 	                       <br>
 	                       <br>
 
-	                       <button id="botonAgregarEmpleado" class="btn btn-primary btn-lg"><a style="color: white">Agregar Empleado</a> </button> 
+	                       <button id="botonAgregarEmpleado" class="btn btn-primary"><a style="color: white">Agregar Empleado</a> </button> 
 
 
 	                    </g:form>  

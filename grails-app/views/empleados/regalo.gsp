@@ -42,7 +42,7 @@
 								<input type="hidden" name="nombreProducto" value="#tituloItem#"/>
 								<input type="hidden" name="urlFotoProducto" value="#urlImagen#"/>
 								<input type="hidden" name="precioProducto" value="#precioItem#"/>
-								<button class="btn btn-primary btn-lg" style="color: white">Regalar</button>
+								<button class="btn btn-primary" style="color: white">Regalar</button>
 							</form>
 						</div>
 						<div class="col-md-5">
