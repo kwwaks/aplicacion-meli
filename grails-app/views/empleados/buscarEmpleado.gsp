@@ -50,6 +50,7 @@
 				<a class="btn btn-danger" style="color: white" href="/cumplesMeli/empleados/eliminarEmpleado/#idEmpleado#">Eliminar Empleado</a>
 				<a class="#claseBotonAgregarRegalo#" style="color: white"href="/cumplesMeli/empleados/regalo/#idEmpleado#">Agregar Regalo</a>
 				<a class="#claseBotonCambiarRegalo#" style="color: white"href="/cumplesMeli/empleados/regalo/#idEmpleado#">Cambiar Regalo</a>
+				<a class="#claseBotonCancelarRegalo#" style="color: white"href="/cumplesMeli/empleados/cancelar/#idEmpleado#">Cancelar Regalo</a>
 			</div>
 			
 		  	<div id="respuesta_nombre_buscado"></div>
@@ -74,9 +75,12 @@
 						if (data.regalos.length > 0) {
 							contenido = contenido.replace("#claseBotonAgregarRegalo#", "ocultar");
 							contenido = contenido.replace("#claseBotonCambiarRegalo#", "btn btn-primary");
+							contenido = contenido.replace("#claseBotonCancelarRegalo#", "btn btn-danger");
+
 						} else {
 							contenido = contenido.replace("#claseBotonAgregarRegalo#", "btn btn-primary");
 							contenido = contenido.replace("#claseBotonCambiarRegalo#", "ocultar");
+							contenido = contenido.replace("#claseBotonCancelarRegalo#", "ocultar");
 						};
 
 						$("#respuesta_nombre_buscado").append(contenido);
