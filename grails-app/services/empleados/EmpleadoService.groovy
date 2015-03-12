@@ -8,6 +8,7 @@ import grails.transaction.Transactional
 @Transactional
 class EmpleadoService {
 
+	//Si ya existe un empleado con mismo nombre, apellido y fecha de nacimiento, no se agrega (se considera el mismo)
 	def agregar(contenidoNombre, contenidoApellido, contenidoFecha){
 		def existeEmpleado = Empleado.list().find{
 			(it.nombre == contenidoNombre) &&
@@ -30,6 +31,27 @@ class EmpleadoService {
 		miEmpleado.delete(flush:true);
 	}
 
-	
+	//listado para la vista del home
+	def listarCumplesDelDia(){
+      
+        def cumplesDelDia = Empleado.list().findAll{ //Todos los empleados que cumplen hoy
+            Extras.obtenerFecha(it.fechaNacimiento) == Extras.obtenerFecha(new Date());
+        };
+
+        cumplesDelDia = cumplesDelDia.collect{
+
+            def hayRegalo = it.regalos.find{it.fechaProducto.year == (new Date().year)}; //solo muestro el regalo de este año (si hay, sino null)
+            //armo un json del empleado (para la vista)
+            [
+                id: it.id,
+                nombre: it.nombre,
+                apellido: it.apellido,  
+                fechaCumpleanios: Extras.obtenerFecha(it.fechaNacimiento),
+                regalo: hayRegalo
+            ]    
+
+        };
+        return cumplesDelDia;
+	}
 
 }

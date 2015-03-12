@@ -12,26 +12,7 @@ class EmpleadosController {
 	def regaloService;
 
     def index() {
-
-    	def cumlesDelDia = Empleado.list().collect{
-    		def hayRegalo = it.regalos.find{
-    			it.fechaProducto.year == (new Date().year);
-    			};
-    		[
-    			id: it.id,
-    			nombre: it.nombre,
-    			apellido: it.apellido,	
-    			fechaCumpleanios: Extras.obtenerFecha(it.fechaNacimiento),
-    			regalo: hayRegalo
-    		]
-    	}
-
-    	[infoRegalos: cumlesDelDia.findAll{
-    		it.fechaCumpleanios == Extras.obtenerFecha(new Date());
-    		}
-    	];
-    		
-    	
+        [infoRegalos: empleadoService.listarCumplesDelDia()];
     }
     
     def regalo(long id) {
@@ -67,7 +48,7 @@ class EmpleadosController {
 		def contenidoNombre = params.nombre;
 		def contenidoApellido = params.apellido;
 		def contenidoFecha = params.fecha;
-		empleadoService.agregar(contenidoNombre, contenidoApellido, contenidoFecha);
+		empleadoService.agregar(contenidoNombre, contenidoApellido, contenidoFecha); 
 		redirect(controller: "Empleados", action:"index");
 	}
 
