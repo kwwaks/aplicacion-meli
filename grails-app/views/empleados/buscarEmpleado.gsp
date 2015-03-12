@@ -48,8 +48,8 @@
 				<h2>#nombreUsuario# #apellidoUsuario#</h2>
 				<p>Fecha de nacimiento: #diaNacimiento# #mesNacimiento# #anioNacimiento#</p>
 				<a class="btn btn-danger" style="color: white" href="/cumplesMeli/empleados/eliminarEmpleado/#idEmpleado#">Eliminar Empleado</a>
-				<a class="#calseBotonAgregarRegalo#" style="color: white"href="/cumplesMeli/empleados/regalo/#idEmpleado#">Agregar Regalo</a>
-				<a class="btn btn-primary" style="color: white"href="/cumplesMeli/empleados/regalo/#idEmpleado#">Cambiar Regalo</a>
+				<a class="#claseBotonAgregarRegalo#" style="color: white"href="/cumplesMeli/empleados/regalo/#idEmpleado#">Agregar Regalo</a>
+				<a class="#claseBotonCambiarRegalo#" style="color: white"href="/cumplesMeli/empleados/regalo/#idEmpleado#">Cambiar Regalo</a>
 			</div>
 			
 		  	<div id="respuesta_nombre_buscado"></div>
@@ -72,7 +72,11 @@
 
 
 						if (data.regalos.length > 0) {
-							contenido = contenido.replace("#calseBotonAgregarRegalo#", "ocultar");
+							contenido = contenido.replace("#claseBotonAgregarRegalo#", "ocultar");
+							contenido = contenido.replace("#claseBotonCambiarRegalo#", "btn btn-primary");
+						} else {
+							contenido = contenido.replace("#claseBotonAgregarRegalo#", "btn btn-primary");
+							contenido = contenido.replace("#claseBotonCambiarRegalo#", "ocultar");
 						};
 
 						$("#respuesta_nombre_buscado").append(contenido);
