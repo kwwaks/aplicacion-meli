@@ -3,8 +3,13 @@ import cumples.Empleado
 import java.util.Date
 import cumples.Regalo
 import cumples.Extras
+import empleados.EmpleadoService
+import regalos.RegaloService
 
 class EmpleadosController {
+
+	def empleadoService;
+	def regaloService;
 
     def index() {
 
@@ -35,21 +40,13 @@ class EmpleadosController {
 
     def cancelar(long id){
 		Empleado miEmpleado = Empleado.get(id);
-		Regalo miRegalo = miEmpleado.regalos.find{it.fechaProducto.year == new Date().year};
-		miEmpleado.regalos.remove(miRegalo);
-		miRegalo.delete(flush:true);
-		miEmpleado.save(flush:true);
+		regaloService.cancelarRegalo(miEmpleado);
 		redirect(controller: "Empleados", action:"index");
     }
 
     def eliminarEmpleado(long id){
 		Empleado miEmpleado = Empleado.get(id);
-		for (int i = 0; i < miEmpleado.regalos.size(); i++){
-			Regalo miRegalo = miEmpleado.regalos[i];
-			miEmpleado.regalos.remove(miRegalo);
-			miRegalo.delete(flush:true);
-		}
-		miEmpleado.delete(flush:true);
+		empleadoService.eliminar(miEmpleado);
 		redirect(controller: "Empleados", action:"index");
     }
 	
@@ -62,31 +59,15 @@ class EmpleadosController {
 	def agregarProducto() {
 		Empleado miEmpleado = Empleado.get(params.idEmpleado as long);
 		Regalo miRegalo = new Regalo(tituloProducto: params.nombreProducto ,urlFotoProducto: params.urlFotoProducto, fechaProducto: new Date(), precioProducto: params.precioProducto);
-		def presente = miEmpleado.regalos.find{it.fechaProducto.year == new Date().year};
-		if(presente != null){
-			miEmpleado.regalos.remove(presente);
-			presente.delete(flush:true);
-		}
-		miRegalo.save(flush:true);
-		miEmpleado.regalos.add(miRegalo);
-		miEmpleado.save(flush:true);
+		regaloService.agregar(miEmpleado, miRegalo);
 		redirect(controller: "Empleados", action:"index");
 	}	
+
 	def agregarEmpleado() {
 		def contenidoNombre = params.nombre;
 		def contenidoApellido = params.apellido;
 		def contenidoFecha = params.fecha;
-
-		def existeEmpleado = Empleado.list().find{
-			(it.nombre == contenidoNombre) &&
-			(it.apellido == contenidoApellido) && 
-			(it.fechaNacimiento == Date.parse("yyyy-MM-dd",contenidoFecha));
-		};
-		if( existeEmpleado == null){
-			def miEmpleado = new Empleado (nombre: contenidoNombre, apellido:contenidoApellido, fechaNacimiento: Date.parse("yyyy-MM-dd",contenidoFecha));
-			miEmpleado.save(flush:true);
-		}
-
+		empleadoService.agregar(contenidoNombre, contenidoApellido, contenidoFecha);
 		redirect(controller: "Empleados", action:"index");
 	}
 
