@@ -8,6 +8,6 @@ class UrlMappings {
         }
         "/"(controller:"/empleados/index")
         "500"(view:'/error')
-        "/reporte_regalos_del_mes"(controller:"/envioMails/mandarMail")
+        "/reporte_regalos_del_mes"(controller:"/envioMails/indexMail")
 	}
 }
