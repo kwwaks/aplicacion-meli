@@ -7,8 +7,17 @@
 	<link rel="icon" type="image/png" href="http://developers.mercadolibre.com/wp-content/uploads/logo_puzzle_slider.png"/>
 	<link rel="stylesheet" type="text/css" href="css/validacion.css">
 </head>
-<body class="container" style="width: 60%;">
-	<body data-target=".navbar-example">
+<body>
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="active"><a href="/cumplesMeli/empleados/index">Home<span class="sr-only">(current)</span></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>		
+	<div class="container" style="width: 60%;" data-target=".navbar-example">
 		<table class="table">
 			<thead>
 				<tr>
@@ -39,6 +48,7 @@
 			<button type="button" class="btn btn-success" id="botonCrear">Crear empleado</button>
 			<button type="button" class="btn btn-danger" id="botonCancelar">Cancelar</button>
 		</div>
+	</div>
 	</form>
 
 	<script type="text/template" id="template_fila">
