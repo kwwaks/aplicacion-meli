@@ -131,13 +131,15 @@ log4j.main = {
 
 
 // Added by the Spring Security Core plugin:
+grails.plugin.springsecurity.rejectIfNoRule = false
+grails.plugin.springsecurity.fii.rejectPublicInvocations = false
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.testapp.User'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.testapp.UserRole'
 grails.plugin.springsecurity.authority.className = 'com.testapp.Role'
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
-	'/':                              ['permitAll'],
-	'/index':                         ['permitAll'],
-	'/index.gsp':                     ['permitAll'],
+	'/':                              ['ROLE_USER'],
+	'/index':                         ['ROLE_USER'],
+	'/index.gsp':                     ['ROLE_USER'],
 	'/assets/**':                     ['permitAll'],
 	'/**/js/**':                      ['permitAll'],
 	'/**/css/**':                     ['permitAll'],

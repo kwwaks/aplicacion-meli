@@ -6,8 +6,8 @@ class UrlMappings {
                 // apply constraints here
             }
         }
-        "/"(controller:"/empleados/index")
+        "/"(controller:"empleados", action:"index")
         "500"(view:'/error')
-        "/reporte_regalos_del_mes"(controller:"/envioMails/indexMail")
+        "/reporte_regalos_del_mes"(controller:"envioMails", action:"indexMail")
 	}
 }

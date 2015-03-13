@@ -5,6 +5,9 @@ import cumples.Regalo
 import cumples.Extras
 import empleados.EmpleadoService
 import regalos.RegaloService
+import grails.plugin.springsecurity.annotation.*
+
+@Secured(['ROLE_ADMIN'])
 
 class EmpleadosController {
 
