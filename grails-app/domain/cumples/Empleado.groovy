@@ -9,13 +9,14 @@ class Empleado {
 	String nombre;
 	String apellido;
 	Date fechaNacimiento;
+	String nombreEmpresa;
 
 	String toString(){
         return  nombre + " " + apellido + " " + Extras.obtenerFecha(fechaNacimiento);
 	}
 
     static hasMany = [regalos: Regalo];
-	static belongTo = [empresa: Empresa];
+	static belongsTo = Empresa;
     
     static constraints = {
     	nombre nullable: false;

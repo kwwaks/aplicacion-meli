@@ -92,6 +92,7 @@
 	                        <h2 class="featurette-heading">Fecha: </h2>
 	                       <input id="campoFecha" type="date" name="fecha" step="1" min="1930-01-01"
 	                         max="2030-12-31" value="${new Date()}" autocomplete="on">
+	                         <input type="hidden" name="empresa" value="${nombreEmpresa}" />
 	                    </div>
 
 	                       <br>

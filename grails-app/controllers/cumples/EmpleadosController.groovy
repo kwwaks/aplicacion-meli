@@ -55,7 +55,8 @@ class EmpleadosController {
 		def contenidoNombre = params.nombre;
 		def contenidoApellido = params.apellido;
 		def contenidoFecha = params.fecha;
-		empleadoService.agregar(contenidoNombre, contenidoApellido, contenidoFecha); 
+		def contenidoEmpresa = params.empresa;
+		empleadoService.agregar(contenidoNombre, contenidoApellido, contenidoFecha, contenidoEmpresa); 
 		redirect(controller: "Empleados", action:"index");
 	}
 

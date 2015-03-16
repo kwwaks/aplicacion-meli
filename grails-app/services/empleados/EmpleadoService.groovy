@@ -1,5 +1,6 @@
 package empleados
 import cumples.Empleado
+import cumples.Empresa
 import java.util.Date
 import cumples.Regalo
 import cumples.Extras
@@ -9,14 +10,15 @@ import grails.transaction.Transactional
 class EmpleadoService {
 
 	//Si ya existe un empleado con mismo nombre, apellido y fecha de nacimiento, no se agrega (se considera el mismo)
-	def agregar(contenidoNombre, contenidoApellido, contenidoFecha){
+	def agregar(contenidoNombre, contenidoApellido, contenidoFecha, contenidoEmpresa){
 		def existeEmpleado = Empleado.list().find{
 			(it.nombre == contenidoNombre) &&
 			(it.apellido == contenidoApellido) && 
-			(it.fechaNacimiento == Date.parse("yyyy-MM-dd",contenidoFecha));
+			(it.fechaNacimiento == Date.parse("yyyy-MM-dd",contenidoFecha)) &&
+			(it.empresa == contenidoEmpresa);
 		};
 		if( existeEmpleado == null){
-			def miEmpleado = new Empleado (nombre: contenidoNombre, apellido:contenidoApellido, fechaNacimiento: Date.parse("yyyy-MM-dd",contenidoFecha));
+			def miEmpleado = new Empleado (nombre: contenidoNombre, apellido:contenidoApellido, fechaNacimiento: Date.parse("yyyy-MM-dd",contenidoFecha), empresa: contenidoEmpresa);
 			miEmpleado.save(flush:true);
 		}
 
@@ -32,8 +34,7 @@ class EmpleadoService {
 	}
 
 	//listado para la vista del home
-	def listarCumplesDelDia(){
-      
+	def listarCumplesDelDia(Empresa empresilla){
         def cumplesDelDia = Empleado.list().findAll{ //Todos los empleados que cumplen hoy
             Extras.obtenerFecha(it.fechaNacimiento) == Extras.obtenerFecha(new Date());
         };
@@ -47,6 +48,7 @@ class EmpleadoService {
                 nombre: it.nombre,
                 apellido: it.apellido,  
                 fechaCumpleanios: Extras.obtenerFecha(it.fechaNacimiento),
+				empresa: it.empresa,
                 regalo: hayRegalo
             ]    
 
