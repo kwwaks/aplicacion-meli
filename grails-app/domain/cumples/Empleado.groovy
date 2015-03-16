@@ -15,6 +15,7 @@ class Empleado {
 	}
 
     static hasMany = [regalos: Regalo];
+	static belongTo = [empresa: Empresa];
     
     static constraints = {
     	nombre nullable: false;
