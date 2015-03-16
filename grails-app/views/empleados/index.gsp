@@ -17,6 +17,13 @@
 	          	 <li ><a href="/cumplesMeli/reporte_regalos_del_mes">Envio Reporte<span class="sr-only">(current)</span></a></li>
 	            <li ><a href="/cumplesMeli/empleados/buscarEmpleado">Buscar Empleado<span class="sr-only">(current)</span></a></li>
 	            <li class="active"><a href="#" data-toggle="modal" data-target="#myModal">Crear Empleado <span class="sr-only">(current)</span></a></li>
+	            <sec:ifLoggedIn> 
+	            <li><a href="/cumplesMeli/j_spring_security_logout">Desloguearme!<span class="sr-only">(current)</span></a></li>
+	            </sec:ifLoggedIn>
+	            
+	            <sec:ifNotLoggedIn>
+	            <li><a href="/cumplesMeli/login/auth">Loguearme!<span class="sr-only">(current)</span></a></li>
+	            </sec:ifNotLoggedIn>
 	          </ul>
 	        </div><!--/.nav-collapse -->
 	      </div>
