@@ -7,7 +7,6 @@ import empleados.EmpleadoService
 import regalos.RegaloService
 import grails.plugin.springsecurity.annotation.*
 
-
 class EmpleadosController {
 
 	def empleadoService;
