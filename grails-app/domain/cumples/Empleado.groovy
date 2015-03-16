@@ -9,7 +9,7 @@ class Empleado {
 	String nombre;
 	String apellido;
 	Date fechaNacimiento;
-	String nombreEmpresa;
+	Empresa empresa;
 
 	String toString(){
         return  nombre + " " + apellido + " " + Extras.obtenerFecha(fechaNacimiento);
