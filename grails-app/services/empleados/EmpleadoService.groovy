@@ -36,7 +36,8 @@ class EmpleadoService {
 	//listado para la vista del home
 	def listarCumplesDelDia(Empresa empresilla){
         def cumplesDelDia = Empleado.list().findAll{ //Todos los empleados que cumplen hoy
-            Extras.obtenerFecha(it.fechaNacimiento) == Extras.obtenerFecha(new Date());
+            (Extras.obtenerFecha(it.fechaNacimiento) == Extras.obtenerFecha(new Date()) &&
+			it.empresa.id == empresilla.id)
         };
 
         cumplesDelDia = cumplesDelDia.collect{
