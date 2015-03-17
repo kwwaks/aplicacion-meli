@@ -9,6 +9,6 @@ class UrlMappings {
         "/"(controller:"Empleados", action:"home")
         "500"(view:'/error')
         "/reporte_regalos_del_mes"(controller:"envioMails", action:"indexMail")
-		"/cumples-de-hoy/"(controller:"empleados", action:"index")
+		"/cumples-de-hoy/$empresa"(controller:"empleados", action:"index")
 	}
 }

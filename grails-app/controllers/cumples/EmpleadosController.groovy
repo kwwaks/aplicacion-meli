@@ -12,7 +12,8 @@ class EmpleadosController {
 	def empleadoService;
 	def regaloService;
 
-    def index(){
+    def index(String empresa){
+		session["empresa"]=Empresa.findByNombre(empresa);
         [infoRegalos: empleadoService.listarCumplesDelDia(session["empresa"]), empresa:session["empresa"]];
 		
     }
