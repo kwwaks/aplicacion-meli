@@ -6,7 +6,7 @@
 		<script type="text/javascript" src="${request.contextPath}/js/jquery-2.1.3.js"></script>
 		<script type="text/javascript" src="${request.contextPath}/bootstrap/js/bootstrap.js"></script>
 		<link rel="icon" type="image/png" href="http://developers.mercadolibre.com/wp-content/uploads/logo_puzzle_slider.png" />
-		<title>Cumples MELI</title>
+		<title>Cumples ${empresa.nombre}</title>
 	</head>
 	<body>
 	    <nav class="navbar navbar-default">
@@ -31,7 +31,7 @@
 
 		<div class="container">
 			<div style = "text-align: center" class="jumbotron">
-				<p style = "font-size: 30px">Cumpleaños del Dia</p>
+				<p style = "font-size: 30px">Cumpleaños del dia en ${empresa.nombre}</p>
 				<p id="fechaDeHoy" style = "font-size: 30px" ></p>
 				<script>
 				//para ver la fecha facil en el home. Habria que mostrarla mas linda <------

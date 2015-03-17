@@ -13,7 +13,8 @@ class EmpleadosController {
 	def regaloService;
 
     def index(){
-        [infoRegalos: empleadoService.listarCumplesDelDia()];
+        [infoRegalos: empleadoService.listarCumplesDelDia(session["empresa"]), empresa:session["empresa"]];
+		
     }
 	
 	def sessionEmpresa(){
