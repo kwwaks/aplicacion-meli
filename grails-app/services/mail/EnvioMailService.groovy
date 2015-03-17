@@ -15,16 +15,17 @@ class EnvioMailService {
     	for (int i = 0; i < empleadosDe.size(); i++) { 
 			if (empleadosDe[i].fechaNacimiento.month == mesActual) {
 				def presente = empleadosDe[i].regalos.find{it.fechaProducto.year == new Date().year};
-				if(presente != null) {
-					gastosDelMes = gastosDelMes + presente.precioProducto;
-				}
+					if(presente != null) {
+						gastosDelMes = gastosDelMes + presente.precioProducto;
+						println gastosDelMes;
+					}
 				
 			}
 		}
 
 		sendMail {
-			to "cande.cp@gmail.com"
-			subject "Gastos del mes de " 
+			to empresa.mail
+			subject "Gastos del mes de " + empresa.nombre
 			body 'Se gastaron en regalos $' + gastosDelMes
 		}
 
