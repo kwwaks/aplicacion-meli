@@ -7,7 +7,6 @@ class EnvioMailsController {
 
 	def envioMailService;
 	def indexMail(){
-		def empresa = session["empresa"];
-		envioMailService.mandarMail(empresa);
+		envioMailService.mandarMail(session["empresa"]);
 	}
 }

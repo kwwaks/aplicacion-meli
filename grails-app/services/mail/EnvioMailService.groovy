@@ -9,12 +9,12 @@ import java.util.Date
 class EnvioMailService {
 
     def mandarMail(Empresa empresa){
-    	def empleados = empresa.empleados;
+    	def empleadosDe = Empleado.findAllByEmpresa(empresa);
     	def gastosDelMes = 0;
 		def mesActual = (new Date().month);
-    	for (int i = 0; i < empleados.size(); i++) { 
-			if (empleados[i].fechaNacimiento.month == mesActual) {
-				def presente = empleados[i].regalos.find{it.fechaProducto.year == new Date().year};
+    	for (int i = 0; i < empleadosDe.size(); i++) { 
+			if (empleadosDe[i].fechaNacimiento.month == mesActual) {
+				def presente = empleadosDe[i].regalos.find{it.fechaProducto.year == new Date().year};
 				if(presente != null) {
 					gastosDelMes = gastosDelMes + presente.precioProducto;
 				}
@@ -24,7 +24,7 @@ class EnvioMailService {
 
 		sendMail {
 			to "cande.cp@gmail.com"
-			subject "Gastos del mes de " + session[empresa].nombre
+			subject "Gastos del mes de " 
 			body 'Se gastaron en regalos $' + gastosDelMes
 		}
 
