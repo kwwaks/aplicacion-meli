@@ -17,6 +17,10 @@ class EmpleadosController {
 		
     }
 	
+	def home() {
+		[listaEmpresas: Empresa.list()]
+	}
+	
 	def sessionEmpresa(){
 		session["empresa"]=Empresa.get(params.empresaID as long);
 		redirect(action:"index");
