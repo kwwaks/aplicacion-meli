@@ -16,24 +16,30 @@
 	          <li class="active"><h4><strong>${session["empresa"].nombre}</strong></h4></li>
 	          </ul>
 	          <ul class="nav navbar-nav navbar-right">
-	          	<li ><a href="/cumplesMeli/abm_empleados.html">ABM Empleados<span class="sr-only">(current)</span></a></li>
-	          	<li ><a href="/cumplesMeli/reporte_regalos_del_mes">Envio Reporte<span class="sr-only">(current)</span></a></li>
-	            <li ><a href="/cumplesMeli/empleados/buscarEmpleado">Buscar Empleado<span class="sr-only">(current)</span></a></li>
+	          	<li><a href="/cumplesMeli/abm_empleados.html">ABM Empleados<span class="sr-only">(current)</span></a></li>
+	          	<li><a href="/cumplesMeli/reporte_regalos_del_mes">Envio Reporte<span class="sr-only">(current)</span></a></li>
+	            <li><a href="/cumplesMeli/empleados/buscarEmpleado">Buscar Empleado<span class="sr-only">(current)</span></a></li>
 	            <li class="active"><a href="#" data-toggle="modal" data-target="#myModal">Crear Empleado <span class="sr-only">(current)</span></a></li>
-	            <sec:ifLoggedIn> <sec:ifAnyGranted roles="ROLE_SUPERADMIN"> 
-	            	<li ><a href="/cumplesMeli/empresas/newEmpresa">Crear Empresa<span class="sr-only">(current)</span></a></li>
-	            </sec:ifAnyGranted> </sec:ifLoggedIn>
-	            <sec:ifLoggedIn> <sec:ifAnyGranted roles="ROLE_SUPERADMIN"> 
-	            	<li ><a href="/cumplesMeli/empresas/newAdmin">Crear Administrador<span class="sr-only">(current)</span></a></li>
-	            </sec:ifAnyGranted> 
-	             </sec:ifLoggedIn>
-	             <sec:ifLoggedIn>
-	            <li><a href="/cumplesMeli/j_spring_security_logout">Desloguearme!<span class="sr-only">(current)</span></a></li>
-	            </sec:ifLoggedIn>
+	            	
+	            	<sec:ifLoggedIn>
+	            		<sec:ifAnyGranted roles="ROLE_SUPERADMIN"> 
+	            			<li><a href="/cumplesMeli/empresas/newEmpresa">Crear Empresa<span class="sr-only">(current)</span></a></li>
+	            		</sec:ifAnyGranted>
+	            	</sec:ifLoggedIn>
+	            	
+	            	<sec:ifLoggedIn>
+	            		<sec:ifAnyGranted roles="ROLE_SUPERADMIN"> 
+	            			<li><a href="/cumplesMeli/empresas/newAdmin">Crear Administrador<span class="sr-only">(current)</span></a></li>
+	            		</sec:ifAnyGranted> 
+	             	</sec:ifLoggedIn>
+	             	
+	             	<sec:ifLoggedIn>
+	            		<li><a href="/cumplesMeli/j_spring_security_logout">Desloguearme!<span class="sr-only">(current)</span></a></li>
+	            	</sec:ifLoggedIn>
 	            
-	            <sec:ifNotLoggedIn>
-	            <li><a href="/cumplesMeli/login/auth">Loguearme!<span class="sr-only">(current)</span></a></li>
-	            </sec:ifNotLoggedIn>
+	            	<sec:ifNotLoggedIn>
+	            		<li><a href="/cumplesMeli/login/auth">Loguearme!<span class="sr-only">(current)</span></a></li>
+	            	</sec:ifNotLoggedIn>
 	          </ul>
 	        </div><!--/.nav-collapse -->
 	      </div>

@@ -18,13 +18,25 @@
 	          </ul>
 	          <ul class="nav navbar-nav navbar-right">
 	            <li class="active"><a href="/cumplesMeli/empleados/index">Home<span class="sr-only">(current)</span></a></li>
-	           <sec:ifLoggedIn> 
-	            <li><a href="/cumplesMeli/j_spring_security_logout">Desloguearme!<span class="sr-only">(current)</span></a></li>
-	            </sec:ifLoggedIn>
+	           		<sec:ifLoggedIn>
+	            		<sec:ifAnyGranted roles="ROLE_SUPERADMIN"> 
+	            			<li><a href="/cumplesMeli/empresas/newEmpresa">Crear Empresa<span class="sr-only">(current)</span></a></li>
+	            		</sec:ifAnyGranted>
+	            	</sec:ifLoggedIn>
+	            	
+	            	<sec:ifLoggedIn>
+	            		<sec:ifAnyGranted roles="ROLE_SUPERADMIN"> 
+	            			<li><a href="/cumplesMeli/empresas/newAdmin">Crear Administrador<span class="sr-only">(current)</span></a></li>
+	            		</sec:ifAnyGranted> 
+	             	</sec:ifLoggedIn>
+	             	
+	             	<sec:ifLoggedIn>
+	            		<li><a href="/cumplesMeli/j_spring_security_logout">Desloguearme!<span class="sr-only">(current)</span></a></li>
+	            	</sec:ifLoggedIn>
 	            
-	            <sec:ifNotLoggedIn>
-	            <li><a href="/cumplesMeli/login/auth">Loguearme!<span class="sr-only">(current)</span></a></li>
-	            </sec:ifNotLoggedIn>
+	            	<sec:ifNotLoggedIn>
+	            		<li><a href="/cumplesMeli/login/auth">Loguearme!<span class="sr-only">(current)</span></a></li>
+	            	</sec:ifNotLoggedIn>
 	          </ul>
 	        </div><!--/.nav-collapse -->
 	      </div>
