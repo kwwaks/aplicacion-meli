@@ -12,9 +12,14 @@ class EmpleadosController {
 	def empleadoService;
 	def regaloService;
 
-    def index() {
+    def index(){
         [infoRegalos: empleadoService.listarCumplesDelDia()];
     }
+	
+	def sessionEmpresa(){
+		session["empresa"]=Empresa.get(params.empresaID as long);
+		redirect(action:"index");
+	}
 	
 	@Secured(['ROLE_ADMIN'])
     def regalo(long id) {
@@ -55,7 +60,7 @@ class EmpleadosController {
 		def contenidoNombre = params.nombre;
 		def contenidoApellido = params.apellido;
 		def contenidoFecha = params.fecha;
-		def contenidoEmpresa = params.empresa;
+		def contenidoEmpresa = session["empresa"];
 		empleadoService.agregar(contenidoNombre, contenidoApellido, contenidoFecha, contenidoEmpresa); 
 		redirect(controller: "Empleados", action:"index");
 	}

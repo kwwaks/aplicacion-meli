@@ -10,7 +10,7 @@
 
 	<body>
 		<h1>Empresas</h1>
-		<g:form method="post" controller="Empleados">
+		<g:form method="post" controller="Empleados" action="sessionEmpresa">
 			<g:select name="empresaID" class="btn btn-default" from="${listaEmpresas}" optionValue= "nombre"  optionKey="id"/>
 			<input type="submit" value="Ingresar al sistema">  
 		</g:form>
