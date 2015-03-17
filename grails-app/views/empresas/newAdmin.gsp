@@ -30,9 +30,9 @@
 		     	<div class="row featurette" align="center">		          		
 		          	<g:form method="post" controller="Empresas" action="agregarAdmin">
                         <h2 class="featurette-heading">Usuario:</h2>
-                        <g:textField name="nombre" value="${myValue}" />
+                        <input type="text" name="nombre" />
                         <h2 class="featurette-heading">Password:</h2>
-                        <g:textField name="apellido" value="${myValue}" />
+                        <input type="text" name="apellido" />
                         <h2 class="featurette-heading">Empresa: </h2>
                         <g:select name="empresaID" class="btn btn-default" from="${empresas}" optionValue="nombre" optionKey="id"/>
                       

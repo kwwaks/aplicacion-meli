@@ -34,7 +34,7 @@
 
 		<div class="container">
 			<div style = "text-align: center" class="jumbotron">
-				<p style = "font-size: 30px">Cumpleaños del dia en ${empresa.nombre}</p>
+				<p style = "font-size: 30px">Hoy cumplen años en ${empresa.nombre}:</p>
 				<p id="fechaDeHoy" style = "font-size: 30px" ></p>
 				<script>
 				//para ver la fecha facil en el home. Habria que mostrarla mas linda <------

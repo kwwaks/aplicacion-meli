@@ -45,7 +45,6 @@ class EmpleadosController {
 		redirect(controller: "Empleados", action:"index");
     }
 	
-	@Secured(['ROLE_ADMIN'])
 	def crearEmpleado() {}
 
 	def buscarEmpleado() {
