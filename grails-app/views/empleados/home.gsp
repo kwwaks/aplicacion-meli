@@ -9,10 +9,17 @@
 
 
 	<body>
-		<h1>Empresas</h1>
-		<g:form method="post" controller="Empleados" action="sessionEmpresa">
-			<g:select name="empresaID" class="btn btn-default" from="${listaEmpresas}" optionValue= "nombre"  optionKey="id"/>
-			<input type="submit" value="Ingresar al sistema">  
-		</g:form>
+	
+	
+	<div class="container">
+			<div style = "text-align: center" class="jumbotron">
+				<p style = "font-size: 30px">Empresas</p>
+			</div>
+	    </div>
+
+		<center><g:form method="post" controller="Empleados" action="sessionEmpresa">
+			<g:select name="empresaID" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false" from="${listaEmpresas}" optionValue= "nombre"  optionKey="id"/>
+			<input type="submit" class="btn btn-default" value="Ingresar al sistema">  
+		</center></g:form>
 	</body>
 </html>
