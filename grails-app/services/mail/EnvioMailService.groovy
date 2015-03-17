@@ -1,14 +1,15 @@
 package mail
 import grails.transaction.Transactional
 import cumples.Empleado
+import cumples.Empresa
 import java.util.List
 import java.util.Date
 
 @Transactional
 class EnvioMailService {
 
-    def mandarMail(){
-    	def empleados = Empleado.list();
+    def mandarMail(Empresa empresa){
+    	def empleados = empresa.empleados;
     	def gastosDelMes = 0;
 		def mesActual = (new Date().month);
     	for (int i = 0; i < empleados.size(); i++) { 
@@ -22,8 +23,8 @@ class EnvioMailService {
 		}
 
 		sendMail {
-			to "lucasrossi20@gmail.com", "franciscocurdi@gmail.com", "ayejuy@hotmail.com"
-			subject "Gastos del mes "
+			to "cande.cp@gmail.com"
+			subject "Gastos del mes de " + session[empresa].nombre
 			body 'Se gastaron en regalos $' + gastosDelMes
 		}
 
