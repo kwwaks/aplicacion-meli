@@ -45,7 +45,7 @@ class EmpleadosController {
 	def crearEmpleado() {}
 
 	def buscarEmpleado() {
-		[listaEmpleados: Empleado.list()];
+		[listaEmpleados: Empleado.list(), empresa:session["empresa"]];
 	}
 
 	@Secured(['ROLE_ADMIN'])

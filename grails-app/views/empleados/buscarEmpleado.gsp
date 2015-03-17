@@ -13,6 +13,9 @@
 	    <nav class="navbar navbar-default">
 	      <div class="container">
 	        <div id="navbar" class="navbar-collapse collapse">
+	          <ul class="nav navbar-nav navbar-left">
+	          <li class="active"><h4><strong>${session["empresa"].nombre}</strong></h4></li>
+	          </ul>
 	          <ul class="nav navbar-nav navbar-right">
 	            <li class="active"><a href="/cumplesMeli/empleados/index">Home<span class="sr-only">(current)</span></a></li>
 	           <sec:ifLoggedIn> 
