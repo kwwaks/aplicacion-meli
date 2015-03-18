@@ -16,10 +16,19 @@
 				<p style = "font-size: 30px">Empresas</p>
 			</div>
 	    </div>
-
-		<center><g:form method="post" controller="Empleados" action="sessionEmpresa">
-			<g:select name="empresaID" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false" from="${listaEmpresas}" optionValue= "nombre"  optionKey="id"/>
-			<input type="submit" class="btn btn-default" value="Ingresar al sistema">  
-		</center></g:form>
+	    
+	    <center>
+	    	<g:select name="empresaID" id="optionSelect" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false" from="${listaEmpresas}" optionValue= "nombre" optionKey="nombre"/>
+	    	<input type="button" id="btnHome" class="btn btn-default" value="Ingresar al sistema" >  
+		</center>
+		
+		<script type="text/javascript">
+		$("#btnHome").click(redirigir);
+		function redirigir(){
+				var empresa = $("#optionSelect").val();
+				var url = "/cumplesMeli/cumples-de-hoy/"+empresa;
+				$(location).attr("href", url);
+			}
+		</script>
 	</body>
 </html>
