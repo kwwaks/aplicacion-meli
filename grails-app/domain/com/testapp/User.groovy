@@ -17,7 +17,6 @@ class User {
 	static constraints = {
 		username blank: false, unique: true
 		password blank: false
-		empresa blank: false
 	}
 
 	static mapping = {
