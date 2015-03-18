@@ -30,7 +30,7 @@
 		     	<div class="row featurette" align="center">		          		
 		          	<g:form method="post" controller="Empresas" action="agregarEmpresa">
                         <h2 class="featurette-heading">Nombre:</h2>
-                        <input type="text" name="nombreEmp" />
+                        <input type="text" pattern="[A-Za-z0-9]+" name="nombreEmp" />
                         <h2 class="featurette-heading">Mail Admin:</h2>
                         <input type="email" name="mailEmp" />
                         

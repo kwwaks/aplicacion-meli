@@ -9,9 +9,22 @@
 
 
 	<body>
-	
-	
-	<div class="container">
+		<nav class="navbar navbar-default">
+			<div class="container">
+				<div id="navbar" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav navbar-right">
+						<sec:ifLoggedIn>
+							<li><a href="/cumplesMeli/j_spring_security_logout">Desloguearme!<span class="sr-only">(current)</span></a></li>
+	            		</sec:ifLoggedIn>
+	            
+	            		<sec:ifNotLoggedIn>
+	            			<li><a href="/cumplesMeli/login/auth">Loguearme!<span class="sr-only">(current)</span></a></li>
+	            		</sec:ifNotLoggedIn>
+	          		</ul>
+				</div>
+			</div>
+		</nav>
+		<div class="container">
 			<div style = "text-align: center" class="jumbotron">
 				<p style = "font-size: 30px">Empresas</p>
 			</div>
