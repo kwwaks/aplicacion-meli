@@ -36,6 +36,7 @@ class EmpresasController {
 		redirect(action:"verAdmins")
 	}
 	
+	@Secured(['ROLE_SUPERADMIN'])
 	def verAdmins(){
 		[admins: User.findAllByEmpresa(flash.message)]
 	}
