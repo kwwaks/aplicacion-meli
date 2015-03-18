@@ -12,11 +12,19 @@ class EmpresasController {
 	
 	@Secured(['ROLE_SUPERADMIN'])
 	def agregarEmpresa(){
-		def nombre = params.nombreEmp;
-		def mail= params.mailEmp;
-		Empresa nueva = new Empresa(nombre: nombre, mail: mail);
-		nueva.save(failOnError:true);
-		redirect(action:"newEmpresa");
+		if(Empresa.findByNombre(params.nombreEmp)==null){
+			def nombre = params.nombreEmp;
+			def mail= params.mailEmp;
+			Empresa nueva = new Empresa(nombre: nombre, mail: mail);
+			nueva.save(failOnError:true);
+			flash.message="success";
+			redirect(action:"newEmpresa");
+		}
+		else{
+			flash.message="error";
+			redirect(action:"newEmpresa");
+		}
+		
 	}
 	
 	@Secured(['ROLE_SUPERADMIN'])
