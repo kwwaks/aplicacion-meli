@@ -35,14 +35,14 @@ class EmpleadosController {
     def cancelar(long id){
 		Empleado miEmpleado = Empleado.get(id);
 		regaloService.cancelarRegalo(miEmpleado);
-		redirect(controller: "Empleados", action:"index");
+		redirect(action:"index");
     }
 
 	@Secured(['ROLE_ADMIN'])
     def eliminarEmpleado(long id){
 		Empleado miEmpleado = Empleado.get(id);
 		empleadoService.eliminar(miEmpleado);
-		redirect(controller: "Empleados", action:"index");
+		redirect(action:"index");
     }
 	
 	def crearEmpleado() {}
@@ -56,7 +56,7 @@ class EmpleadosController {
 		Empleado miEmpleado = Empleado.get(params.idEmpleado as long);
 		Regalo miRegalo = new Regalo(tituloProducto: params.nombreProducto ,urlFotoProducto: params.urlFotoProducto, fechaProducto: new Date(), precioProducto: params.precioProducto);
 		regaloService.agregar(miEmpleado, miRegalo);
-		redirect(controller: "Empleados", action:"index");
+		redirect(action:"index");
 	}	
 
 	@Secured(['ROLE_ADMIN'])
@@ -66,7 +66,8 @@ class EmpleadosController {
 		def contenidoFecha = params.fecha;
 		def contenidoEmpresa = session["empresa"];
 		empleadoService.agregar(contenidoNombre, contenidoApellido, contenidoFecha, contenidoEmpresa); 
-		redirect(controller: "Empleados", action:"index");
+		//flash.message = session["empresa"].nombre;
+		redirect(url:"/cumples-de-hoy/"+session["empresa"].nombre+"");
 	}
 
 }
