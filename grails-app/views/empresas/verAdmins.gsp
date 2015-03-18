@@ -17,6 +17,7 @@
 	          <li class="active"><h4><strong>${session["empresa"].nombre}</strong></h4></li>
 	          </ul>
 	          <ul class="nav navbar-nav navbar-right">
+	          	<li><a href="/cumplesMeli/cumples-de-hoy/${session["empresa"].nombre}">Home<span class="sr-only">(current)</span></a></li>
 	          	<li><a href="/cumplesMeli/abm_empleados.html">ABM Empleados<span class="sr-only">(current)</span></a></li>
 	          	<li><a href="/cumplesMeli/reporte_regalos_del_mes">Envio Reporte<span class="sr-only">(current)</span></a></li>
 	            <li><a href="/cumplesMeli/empleados/buscarEmpleado">Buscar Empleado<span class="sr-only">(current)</span></a></li>

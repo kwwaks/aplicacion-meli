@@ -16,7 +16,7 @@
 	          <li class="active"><h4><strong>${session["empresa"].nombre}</strong></h4></li>
 	          </ul>
 	          <ul class="nav navbar-nav navbar-right">
-	           <li class="active"><a href="/cumplesMeli/empleados/index">Home<span class="sr-only">(current)</span></a></li>
+	           <li class="active"><a href="/cumplesMeli/cumples-de-hoy/${session["empresa"].nombre}">Home<span class="sr-only">(current)</span></a></li>
 	            	<sec:ifLoggedIn>
 	            		<sec:ifAnyGranted roles="ROLE_SUPERADMIN"> 
 	            			<li><a href="/cumplesMeli/empresas/newEmpresa">Crear Empresa<span class="sr-only">(current)</span></a></li>

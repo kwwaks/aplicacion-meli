@@ -14,7 +14,7 @@
 			<div class="container">
 				<div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav navbar-right">
-	            		<li class="active"><a href="/cumplesMeli/empleados/index">Home<span class="sr-only">(current)</span></a></li>
+	            		<li class="active"><a href="/cumplesMeli/cumples-de-hoy/${session["empresa"].nombre}">Home<span class="sr-only">(current)</span></a></li>
 	            	</ul>
 				</div>
 			</div>
@@ -39,6 +39,13 @@
                        <button class="btn btn-primary btn-lg"><a style="color: white">Agregar Empresa</a> </button> 
 
                     </g:form>
+                    
+                    <g:if test="${flash.message=='error'}">
+						<h3 style="text-align:center; color: #000;" class="lead"><span class="label label-danger" >Ya hay un empresa registrada con ese nombre.</span></h3>
+					</g:if>
+					<g:if test="${flash.message=='success'}">
+						<h3 style="text-align:center; color: #000;" class="lead"><span class="label label-success" >Empresa registrado correctamente.</span></h3>
+					</g:if>
 		          		
 		         </div>  
 		 

@@ -27,7 +27,7 @@
 		      <div class="container">
 		        <div id="navbar" class="navbar-collapse collapse">
 		          <ul class="nav navbar-nav navbar-right">
-		            <li class="active"><a href="/cumplesMeli/empleados/index"> Home <span class="sr-only">(current)</span></a></li>
+		            <li class="active"><a href="/cumplesMeli/cumples-de-hoy/${session["empresa"].nombre}"> Home <span class="sr-only">(current)</span></a></li>
 		            <li><a href="/cumplesMeli/j_spring_security_logout">Desloguearme!<span class="sr-only">(current)</span></a></li>
 		          </ul>
 		        </div><!--/.nav-collapse -->
