@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>ABM Empleados</title>
+	<title>ABM Empresas</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<script type="text/javascript" src="js/jquery-2.1.3.js"></script>
 	<link rel="icon" type="image/png" href="http://developers.mercadolibre.com/wp-content/uploads/logo_puzzle_slider.png"/>
@@ -22,27 +22,23 @@
 		<table class="table">
 			<thead>
 				<tr>
-					<th>Nombre</th><th>Apellido</th><th>Cumplea&ntilde;os</th><th>Modificar/Eliminar</th>
+					<th>Nombre</th><th>Mail Administrador</th><th>Modificar/Eliminar</th>
 				</tr>
 			</thead>
 		</table>
 		<div style="height: 250px; overflow: auto">
 			<table class="table">
-						<tbody id="listaEmpleados"></tbody>
+						<tbody id="listaEmpresas"></tbody>
 			</table>
 		</div>
 	<form id="formCreate" style="width: 60%; margin: 0 auto">
 		<div class="form-group">
 			<label>Nombre</label>
-			<input class="form-control" type="text" pattern="[A-Za-z]+" placeholder="Ingrese el nombre" name="nombre" id="nombreEmpleado"/>
+			<input class="form-control" type="text" pattern="[A-Za-z]+" placeholder="Ingrese el nombre" name="nombre" id="nombreEmpresa"/>
 		</div>
 		<div class="form-group">
-			<label>Apellido</label>
-			<input class="form-control" type="text" pattern="[A-Za-z]+" placeholder="Ingrese el apellido" name="apellido" id="apellidoEmpleado"/>
-		</div>
-		<div class="form-group">
-			<label>Nacimiento</label>
-			<input class="form-control" type="text" placeholder="Ingrese la fecha aaaa/mm/dd" name="nacimiento" id="fechaEmpleado"/>
+			<label>Mail Administrador</label>
+			<input class="form-control" type="email" pattern="[A-Za-z]+" placeholder="Ingrese el mail" name="mail" id="mailEmpresa"/>
 		</div>
 		<div style="text-align: right">
 			<button type="button" class="ocultar" id="botonAceptar">Aceptar</button>
@@ -53,22 +49,21 @@
 	</form>
 
 	<script type="text/template" id="template_fila">
-		<tr id="fila#idEmpleado">
-			<td>#nombreEmpleado</td>
-			<td>#apellidoEmpleado</td>
-			<td>#fechaNacimientoEmpleado</td>
+		<tr id="fila#idEmpresa">
+			<td>#nombreEmpresa</td>
+			<td>#mailEmpresa</td>
 			<td>
 				<form> 
-					<button type="button" onclick="editarEmpleado(#idEmpleado)" class="btn btn-xs btn-primary" id="botonModificar">Modificar</button>
-					<button type="button" onclick="eliminarEmpleado(#idEmpleado)" class="btn btn-xs btn-danger" id="botonEliminar">Eliminar</button>
+					<button type="button" onclick="editarEmpresa(#idEmpresa)" class="btn btn-xs btn-primary" id="botonModificar">Modificar</button>
+					<button type="button" onclick="eliminarEmpresa(#idEmpresa)" class="btn btn-xs btn-danger" id="botonEliminar">Eliminar</button>
 				</form>
 			</td>
 		</tr>
 	</script>
 
 	<script type="text/javascript">
-		$("#botonCrear").click(crearEmpleado);
-		$("#botonAceptar").click(actualizarEmpleado);
+		$("#botonCrear").click(crearEmpresa);
+		$("#botonAceptar").click(actualizarEmpresa);
 		$("#botonCancelar").click(function (){
 			limpiar();
 			$("#botonCrear").attr("class", "btn btn-success");
@@ -79,64 +74,57 @@
 			var promise = $.ajax("/cumplesMeli/empleado/" + id + ".json", {
 				method: "DELETE"});
 			promise.done(function() {
-				$("#listaEmpleados").empty();
+				$("#listaEmpresas").empty();
 				mostrarEmpleadosInicio();
 			});
 		};
 
 
-		function editarEmpleado (id){
+		function editarEmpresa(id){
 			globalID = id; //id para el boton aceptar
 
 			var promise = $.get("/cumplesMeli/empleado/" + id + ".json");
 			promise.done(function (empleado) {
-				$("#nombreEmpleado").val(empleado.nombre);
-				$("#apellidoEmpleado").val(empleado.apellido);
-				var anio = empleado.fechaNacimiento.substring(0,4);
-				var mes = empleado.fechaNacimiento.substring(5,7);
-				var dia = empleado.fechaNacimiento.substring(8,10);
-				var fecha = anio + "/" + mes + "/"  + dia;
-				$("#fechaEmpleado").val(fecha);
+				$("#nombreEmpresa").val(empresa.nombre);
+				$("#mailEmpresa").val(empresa.mail);
 				$("#botonAceptar").attr("class", "btn btn-primary");
 				$("#botonCrear").attr("class", "ocultar");
 			});
 
 		}
 
-		function actualizarEmpleado(){
+		function actualizarEmpresa(){
 			var promise = $.ajax("/cumplesMeli/empleado/" + globalID + ".json", {
 				method: "PUT",
 				contentType: 'application/json; charset=utf-8',
 				data: JSON.stringify({
-					nombre: $("#nombreEmpleado").val(),
-					apellido: $("#apellidoEmpleado").val(),
-					fechaNacimiento: $("#fechaEmpleado").val()
+					nombre: $("#nombreEmpresa").val(),
+					mail: $("#mailEmpresa").val(),
 				})
 			});
 			promise.done(function (empleado){
-				$("#listaEmpleados").empty();
+				$("#listaEmpresa").empty();
 				limpiar();
-				mostrarEmpleadosInicio();
+				mostrarEmpresasInicio();
 				$("#botonCrear").attr("class", "btn btn-success");
 				$("#botonAceptar").attr("class", "ocultar");
 			})
 		};
 
-		function mostrarEmpleadosInicio() {
+		function mostrarEmpresasInicio() {
 			var promise = $.get("/cumplesMeli/empleado.json");
 			promise.done(function (empleados){
 				$.each(empleados, mostrarEmpleado);
 			});
 		}
 
-		function crearEmpleado() {
+		function crearEmpresa() {
 			var promise = $.ajax("/cumplesMeli/empleado.json", {
 				method: "POST",
 				contentType: 'application/json; charset=utf-8',
 				data: JSON.stringify({
-					nombre: $("#nombreEmpleado").val(),
-					apellido: $("#apellidoEmpleado").val(),
-					fechaNacimiento: $("#fechaEmpleado").val()
+					nombre: $("#nombreEmpresa").val(),
+					apellido: $("#mailEmpresa").val(),
 				})
 			});
 
@@ -147,22 +135,20 @@
 
 		};
 
-		function mostrarEmpleado(index, empleado) {
+		function mostrarEmpresa(index, empleado) {
 			var fila = $("#template_fila").html();
-			fila = fila.replace("#nombreEmpleado", empleado.nombre);
-			fila = fila.replace("#apellidoEmpleado", empleado.apellido);
-			fila = fila.replace("#fechaNacimientoEmpleado", empleado.fechaNacimiento.substring(0,10));
-			fila = fila.replace(/#idEmpleado/g, empleado.id); // /g cambia todos los idEmpleado
+			fila = fila.replace("#nombreEmpresa", empresa.nombre);
+			fila = fila.replace("#mailEmpresa", empresa.mail);
+			fila = fila.replace(/#idEmpresa/g, empresa.id); // /g cambia todos los idEmpleado
 
-			$("#listaEmpleados").append(fila);
+			$("#listaEmpresas").append(fila);
 		};
 
 		function limpiar() {
-			$("#nombreEmpleado").val("");
-			$("#apellidoEmpleado").val("");
-			$("#fechaEmpleado").val("");
+			$("#nombreEmpresa").val("");
+			$("#mailEmpresa").val("");
 		};
 
-		mostrarEmpleadosInicio();
+		mostrarEmpresasInicio();
 	</script>
 </body>
