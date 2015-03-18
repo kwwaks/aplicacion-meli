@@ -29,9 +29,14 @@ class EmpresasController {
 		def user=params.user;
 		def pass=params.pass;
 		def empresa=Empresa.get(params.empresaID as long);
-		User u1 = new User(username:user, password:pass).save(flush:true);
-		Role r1 = new Role(authority:"ROLE_ADMIN"+empresa.nombre).save(flush:true);
+		User u1 = new User(username:user, password:pass, empresa:empresa.nombre).save(flush:true);
+		Role r1 = new Role(authority:"ROLE_ADMIN").save(flush:true);
 		UserRole.create(u1, r1, true);
-		redirect(action:"newAdmin");
+		flash.message=empresa.nombre;
+		redirect(action:"verAdmins")
+	}
+	
+	def verAdmins(){
+		[admins: User.findAllByEmpresa(flash.message)]
 	}
 }

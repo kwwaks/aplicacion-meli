@@ -32,7 +32,13 @@
 	            			<li><a href="/cumplesMeli/empresas/newAdmin">Crear Administrador<span class="sr-only">(current)</span></a></li>
 	            		</sec:ifAnyGranted> 
 	             	</sec:ifLoggedIn>
-	             	
+
+	             	<sec:ifLoggedIn>
+	            		<sec:ifAnyGranted roles="ROLE_SUPERADMIN"> 
+	            			<li><a href="/cumplesMeli/empresas/verAdmins">Administradores<span class="sr-only">(current)</span></a></li>
+	            		</sec:ifAnyGranted> 
+	             	</sec:ifLoggedIn>
+	             		             	
 	             	<sec:ifLoggedIn>
 	            		<li><a href="/cumplesMeli/j_spring_security_logout">Desloguearme!<span class="sr-only">(current)</span></a></li>
 	            	</sec:ifLoggedIn>
