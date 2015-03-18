@@ -34,18 +34,24 @@ class EmpresasController {
 	
 	@Secured(['ROLE_SUPERADMIN'])
 	def agregarAdmin(){
-		def user=params.user;
-		def pass=params.pass;
-		def empresa=Empresa.get(params.empresaID as long);
-		User u1 = new User(username:user, password:pass, empresa:empresa.nombre).save(flush:true);
-		Role r1 = new Role(authority:"ROLE_ADMIN").save(flush:true);
-		UserRole.create(u1, r1, true);
-		flash.message=empresa.nombre;
-		redirect(action:"verAdmins")
+		if (User.findByUsername(params.user)==null){
+			def user=params.user;
+			def pass=params.pass;
+			def empresa=Empresa.get(params.empresaID as long);
+			User u1 = new User(username:user, password:pass, empresa:empresa.nombre).save(flush:true);
+			Role r1 = new Role(authority:"ROLE_ADMIN").save(flush:true);
+			UserRole.create(u1, r1, true);
+			flash.message="success";
+			redirect(action:"newAdmin");
+		}
+		else{
+			flash.message="error";
+			redirect(action:"newAdmin");
+		}
 	}
 	
 	@Secured(['ROLE_SUPERADMIN'])
 	def verAdmins(){
-		[admins: User.findAllByEmpresa(flash.message)]
+		[admins: User.findAllByEmpresa(session["empresa"])]
 	}
 }

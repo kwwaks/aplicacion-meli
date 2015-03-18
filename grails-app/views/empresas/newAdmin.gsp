@@ -41,7 +41,13 @@
                        <button class="btn btn-primary btn-lg"><a style="color: white">Agregar Administrador</a> </button> 
 
                     </g:form>
+		          		<g:if test="${flash.message=='error'}">
+		          			<h3 style="text-align:center; color: #000;" class="lead"><span class="label label-danger">Ya hay un administrador registrado con ese nombre de usuario.</span></h3>
+		          		</g:if>
 		          		
+		          		<g:if test="${flash.message=='success'}">
+		          			<h3 style="text-align:center; color: #000;" class="lead"><span class="label label-success">Administrador registrado correctamente.</span></h3>
+		          		</g:if>
 		         </div>  
 		 
 		    </div>
